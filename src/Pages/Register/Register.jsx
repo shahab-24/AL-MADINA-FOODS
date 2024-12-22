@@ -4,10 +4,12 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
-	const {user,createUser, err, setErr, handleGoogleLogin} = useAuth()
+	const {user,createUser, err, setErr, handleGoogleLogin,setUser} = useAuth()
 	const [showPassword, setShowPassword] = useState(false)
 
 	const handleRegister = (e) => {
@@ -27,7 +29,19 @@ const Register = () => {
 		// create user============
 		createUser(email, password)
 		.then(res => {
-			console.log(res.user)
+			const foodUser = res.user;
+			axios.post("http://localhost:3000/user",foodUser)
+			.then(data => {
+				console.log(data.data)
+				
+				if(data.data.insertedId){
+					toast.success("user created successfully")
+				}
+				setUser(data.data)
+			})
+			
+
+			
 		})
 		.catch(error => {
 			console.log(error.message)
