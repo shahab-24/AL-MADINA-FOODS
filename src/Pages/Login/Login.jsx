@@ -9,7 +9,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const Login = () => {
-  const { loginUser,setErr, setUser , err} = useAuth();
+const { loginUser,setErr, setUser , err, handleGoogleLogin} = useAuth();
   const location = useLocation()
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
@@ -97,10 +97,26 @@ setErr("")
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
+          <div className="divider"></div>
+        <p className="text-center">Or</p>
+          <div className="mt-6 flex flex-col items-center gap-4 mb-10 px-8">
+          <button
+            onClick={handleGoogleLogin}
+            className="btn btn-outline w-full flex items-center gap-2"
+          >
+            Login with Google
+            <img
+              src="https://img.icons8.com/color/48/google-logo.png"
+              alt="Google"
+              className="w-6"
+            />
+          </button>
+        </div>
           {
       err && (<p className='text-red-500'>{err}</p>)
     }
         </div>
+        
       </div>
     </div>
   );

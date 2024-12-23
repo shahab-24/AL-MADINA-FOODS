@@ -3,6 +3,8 @@ import AuthContext from "./AuthContext";
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import auth from "../Firebase.config";
 import {toast } from 'react-toastify';
+import { Navigate, useLocation } from "react-router-dom";
+
 
 
 
@@ -10,6 +12,8 @@ const AuthProvider = ({children}) => {
 	const [user, setUser] = useState(null)
 	const [loading, setLoading] = useState(true)
 	const [err, setErr] = useState("")
+
+	
 	const googleProvider =  new GoogleAuthProvider();
 
 	const createUser =(email, password)=> {
@@ -33,6 +37,7 @@ const AuthProvider = ({children}) => {
 			setLoading(false)
 			console.log(user)
 			toast.success("Login successful")
+			
 		})
 		.catch(error => {
 			console.log(error.message)
