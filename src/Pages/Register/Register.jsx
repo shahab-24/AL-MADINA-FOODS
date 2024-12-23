@@ -21,24 +21,24 @@ const Register = () => {
 		const email = form.email.value;
 		const password = form.password.value;
 		const photo = form.photo.value;
-		const user = {
-			email, password,
-			name,
-			photo
-		}
-		console.log(user)
+		// const user = {
+		// 	email, password,
+		// 	name,
+		// 	photo
+		// }
+		// console.log(user)
 
 		// create user============
 		createUser(email, password)
-		.then(res => {
-			const foodUser = res.user;
+		.then(result => {
+			const foodUser = result.user;
 			console.log(foodUser)
 			axios.post("http://localhost:3000/user",foodUser)
 			.then(data => {
 				console.log(data.data)
 				
 				if(data.data.insertedId){
-					toast.success("user created successfully")
+					toast.success("Registration successful")
 				}
 				setUser(data.data)
 			})
