@@ -4,10 +4,19 @@ import useAuth from "../../Hooks/useAuth";
 
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+
 const Login = () => {
-  const { loginUser,setErr, setUser } = useAuth();
+  const { loginUser,setErr, setUser , err} = useAuth();
   const location = useLocation()
   const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
+
+  const handleShowPassword =() => {
+    setShowPassword(!showPassword)
+  }
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,7 +24,9 @@ const Login = () => {
 	const form = e.target;
 	const email = form.email.value;
 	const password = form.password.value;
-  
+
+
+form.reset()
 setErr("")
 	loginUser(email, password)
 	.then(result => {
@@ -24,14 +35,17 @@ setErr("")
       toast.success("login successfull")
 
     }
+      
+  
  navigate(location?.state? location.state: "/")
- form.reset()
+ 
 		})
 	
 
 	
 	.catch(error => {
 		setErr(error.message)
+    toast.error(error.message)
 	})
   };
   return (
@@ -63,12 +77,16 @@ setErr("")
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="password"
                 name="password"
                 className="input input-bordered"
                 required
               />
+              <button type='button' onClick={handleShowPassword} className="absolute right-12 top-44 text-gray-600">
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+
+              </button>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?
@@ -79,9 +97,9 @@ setErr("")
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
-          {/* {
-      error && (<p className='text-red-500'>{error}</p>)
-    } */}
+          {
+      err && (<p className='text-red-500'>{err}</p>)
+    }
         </div>
       </div>
     </div>

@@ -1,11 +1,25 @@
-import { NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 
 
 const Navbar = () => {
+  const {user, logOutUser ,loading} = useAuth();
+  console.log(user)
 	const links = <>
 	<li><NavLink to="/">Home</NavLink></li>
-	<li><NavLink to='/login'>Login</NavLink></li>
-	<li><NavLink to='/register'>Register</NavLink></li>
+	
+	<li><NavLink to='/availableFoods'>Available Foods</NavLink></li>
+	{
+    user&& (<><li><NavLink to='/addFood'>Add Food</NavLink></li>
+      <li><NavLink to='/myFood'>My Food</NavLink></li>
+      <li><NavLink to='/myRequest'>My Request</NavLink></li></>)
+  }
+
+
+{
+  !user &&(  <><li><NavLink to='/login'>Login</NavLink></li>
+	<li><NavLink to='/register'>Register</NavLink></li></>)
+}
         
     
 	</>
@@ -41,8 +55,27 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
-  </div>
+    {
+     user && user?.email ? (
+        <div className="flex items-center gap-2" title={user.displayName}>
+          <img
+            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-cyan-400"
+            src={user.photoURL}
+            alt="User"
+          />
+          <button onClick={logOutUser} className="btn btn-outline">
+            Logout
+          </button>
+        </div>
+      ) : (
+        <NavLink to="/login" className="btn btn-outline">
+          Login
+        </NavLink>
+      )
+    }
+        
+      </div>
+  
 </div>
 	);
 };
