@@ -28,6 +28,16 @@ const Register = () => {
 		// }
 		// console.log(user)
 
+    const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+
+
+    
+    if (!passwordRegex.test(password)) {
+      toast.error("Password must be at least 6 characters, include uppercase, lowercase, number, and a special character.")
+      return;
+    }
+
 		// create user============
 		createUser(email, password)
 		.then(result => {
@@ -41,6 +51,7 @@ const Register = () => {
 					toast.success("Registration successful")
 				}
 				setUser(data.data)
+        form.reset()
 			})
 			
 
