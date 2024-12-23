@@ -6,6 +6,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+// import Lottie from "lottie-react";
+// import lottieRegister from '../../assets/register.json'
 
 
 const Register = () => {
@@ -30,6 +32,7 @@ const Register = () => {
 		createUser(email, password)
 		.then(res => {
 			const foodUser = res.user;
+			console.log(foodUser)
 			axios.post("http://localhost:3000/user",foodUser)
 			.then(data => {
 				console.log(data.data)
@@ -63,13 +66,19 @@ const Register = () => {
         backgroundImage: "url('https://i.ibb.co.com/17DzfpB/jacek-dylag-k-H3-Sr9-K8-EBA-unsplash.jpg')",
       }}
     >
+      {/* <div className="w-[70%] max-auto">
+        
+        <Lottie animationData={lottieRegister}></Lottie>
+        </div> */}
       <div
-        className=" shadow-lg p-8 bg-transparent rounded-lg max-w-lg w-full z-20"
+        className="shadow-lg p-8 bg-transparent rounded-lg max-w-lg w-full z-20"
         style={{ backdropFilter: "blur(10px)" }}
       >
+        
         <h2 className="font-bold text-center text-purple-700 text-3xl mb-4">
           Create Account
         </h2>
+
         <form onSubmit={handleRegister}>
           <div className="form-control mb-4">
             <label className="label">
