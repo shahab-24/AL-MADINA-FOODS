@@ -1,6 +1,9 @@
 
 
+
+
 const MyFood = () => {
+	 
 	return (
 		<div>
 			<h2>My Food</h2>

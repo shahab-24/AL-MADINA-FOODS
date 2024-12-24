@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddFood = () => {
 	const {user, setErr} = useAuth()
@@ -11,7 +12,7 @@ const AddFood = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, reset
   } = useForm();
 
   useEffect(() => {
@@ -20,19 +21,25 @@ const AddFood = () => {
 
   const onSubmit = (data) => {
     // console.log(data);
-	const foodUser = { donatorName: user.name,
+	// const foodUser = { 
+  //   donatorName: user.name,
+	// 	donatorEmail: user.email ,
+	// 	donatorImage: user.photoURL ,
+	// 	foodStatus: "available"
+
+	// }
+	const newFood = {...data,     donatorName: user.name,
 		donatorEmail: user.email ,
 		donatorImage: user.photoURL ,
-		foodStatus: "available"
-
-	}
-	const newFood = {...data, foodUser}
+		foodStatus: "available"}
 	console.log("food",newFood)
 
 	axios.post("http://localhost:3000/add-foods", newFood)
 	.then(res => {
 		// setFoods(res.data)
 		console.log(res.data)
+		reset()
+		toast.success('Food added successfully')
 	})
 	.catch(error => {
 		setErr(error.message)
