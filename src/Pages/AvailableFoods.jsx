@@ -40,7 +40,8 @@ import useAuth from '../Hooks/useAuth';
 
 const AvailableFoods = () => {
     const [foods, setFoods] = useState([]);
-	const [search, setSearch] = useState("")
+	const [searchText, setSearchText] = useState("")
+    const [filteredFoods,setFilteredFoods] = useState([])
 	const {user} = useAuth()
 
     useEffect(() => {
@@ -48,29 +49,29 @@ const AvailableFoods = () => {
         
                 axios.get('http://localhost:3000/available-foods')
 				.then(result => {
-					const newFood = result.data;
-					setFoods(newFood);
+					// const newFood = result.data;
+                    // console.log(newFood)
+					setFoods(result.data);
+                    setFilteredFoods(result.data)
 				})
 				.catch(error => {
 				console.log(error.message)
-				})
-                
-            
-        
-
-        
+				})        
     }, []);
 
-	const handleSearchByName =()=> {
-		const searchedFoods = foods.filter(food => food.foodName.toLowerCase().includes(search.toLowerCase()))
-	}
+    useEffect(()=> {
+        const searchedFoods = foods.filter(food => food.foodName.toLowerCase().includes(searchText.toLowerCase()))
+        setFilteredFoods(searchedFoods)
+
+    },[searchText, foods])
+
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">
             <h1 className="text-4xl font-bold text-center mb-8">Available Foods</h1>
-			<input onChange={handleSearchByName} type="search" name="searchTerm" id="" />
+			<div><input onChange={(e) => setSearchText(e.target.value)} type="search" name="searchTerm" value={searchText} placeholder="Search foods..." className='bg-transparent border-2 border-cyan-500 my-4'/> </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {foods.map((food) => (
+                {filteredFoods.map((food) => (
                     <div
                         key={food._id}
                         className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow"
