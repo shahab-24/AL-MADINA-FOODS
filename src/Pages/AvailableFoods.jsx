@@ -37,6 +37,7 @@ import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import useAuth from '../Hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const AvailableFoods = () => {
     const [foods, setFoods] = useState([]);
@@ -67,9 +68,15 @@ const AvailableFoods = () => {
 
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
+        <div  className="min-h-screen bg-cover bg-center p-6"
+        style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1528690942004-5b2e8ca2ec45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080)',
+            backgroundColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundBlendMode: 'overlay',
+        }}>
+
             <h1 className="text-4xl font-bold text-center mb-8">Available Foods</h1>
-			<div><input onChange={(e) => setSearchText(e.target.value)} type="search" name="searchTerm" value={searchText} placeholder="Search foods..." className='bg-transparent border-2 border-cyan-500 my-4'/> </div>
+			<div className='w-[30%]'><input onChange={(e) => setSearchText(e.target.value)} type="search" name="searchTerm" value={searchText} placeholder="Search foods..." className='bg-transparent border-2 border-cyan-500 my-4 w-[100%]  rounded-xl py-2 px-2'/> </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredFoods.map((food) => (
                     <div
@@ -95,10 +102,21 @@ const AvailableFoods = () => {
                             />
                             <p className="text-sm text-gray-500">{food.foodUser.donatorEmail}</p>
                         </div>
+                        <Link to={`/food-details/${food._id}`}>
+                        <button
+                            
+                            className="w-full mt-4 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition"
+                        >
+                            View Details
+                        </button>
+                        </Link>
+                        
                     </div>
                 ))}
             </div>
         </div>
+        
+        
     );
 };
 

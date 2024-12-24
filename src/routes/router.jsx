@@ -11,6 +11,7 @@ import AddFood from "../Pages/AddFood";
 import MyFood from "../Pages/MyFood";
 import MyRequest from "../Pages/MyRequest";
 import ErrorPage from "../Pages/ErrorPage";
+import FoodDetails from "../Components/FoodDetails";
 
 
   const router = createBrowserRouter([
@@ -48,6 +49,10 @@ import ErrorPage from "../Pages/ErrorPage";
 	  {
 		path: 'myRequest',
 		element: <MyRequest></MyRequest>
+	  },
+	  {
+		path: 'food-details/:id',
+		element: <FoodDetails></FoodDetails>
 	  },
 
 	  ]
