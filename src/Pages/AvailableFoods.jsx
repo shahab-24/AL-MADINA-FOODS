@@ -61,7 +61,7 @@ const AvailableFoods = () => {
     }, []);
 
     useEffect(()=> {
-        const searchedFoods = foods.filter(food => food.foodName.toLowerCase().includes(searchText.toLowerCase()))
+        const searchedFoods = foods.filter(food => food?.foodName?.toLowerCase().includes(searchText.toLowerCase()))
         setFilteredFoods(searchedFoods)
 
     },[searchText, foods])

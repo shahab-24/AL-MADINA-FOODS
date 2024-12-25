@@ -13,7 +13,7 @@ const FoodDetails = () => {
 	const {id} = useParams()
 	console.log(id)
 	const {user} = useAuth()
-	const loggedInUserEmail = user.emal
+	const loggedInUserEmail = user.email
 
 	console.log(loggedInUserEmail)
 	useEffect(() => {
@@ -27,17 +27,21 @@ const FoodDetails = () => {
 		})
 	}, [id])
 
-	const handleRequestFood=() => {
+	const handleRequestFood=(foodId) => {
 		const requestData ={
-			foodId: id,
+			foodId: foodId,
 			userEmail: loggedInUserEmail,
 			requestDate: new Date(),
+            // "foodUser.foodStatus": "requested",
 			additionalNotes
 		}
+		console.log(requestData)
 
 		axios.post("http://localhost:3000/request-food",requestData)
 		.then(result => {
-			console.log(result)
+			console.log(result.data)
+            setFood(result.data)
+		
 			navigate('/myRequest')
 		setShowModal(false)
 		} )
@@ -89,7 +93,7 @@ const FoodDetails = () => {
                                 Cancel
                             </button>
                             <button
-                                onClick={handleRequestFood} // Submit request
+                                onClick={()=>handleRequestFood(food._id)} // Submit request
                                 className="bg-blue-500 text-white px-4 py-2 rounded"
                             >
                                 Request

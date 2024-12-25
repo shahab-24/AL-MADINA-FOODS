@@ -21,17 +21,14 @@ const AddFood = () => {
 
   const onSubmit = (data) => {
     // console.log(data);
-	// const foodUser = { 
-  //   donatorName: user.name,
-	// 	donatorEmail: user.email ,
-	// 	donatorImage: user.photoURL ,
-	// 	foodStatus: "available"
-
-	// }
-	const newFood = {...data,     donatorName: user.name,
+	const foodUser = { 
+    donatorName: user.name,
 		donatorEmail: user.email ,
 		donatorImage: user.photoURL ,
-		foodStatus: "available"}
+		foodStatus: "available"
+
+	}
+	const newFood = {...data,    foodUser}
 	console.log("food",newFood)
 
 	axios.post("http://localhost:3000/add-foods", newFood)
