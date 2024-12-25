@@ -12,7 +12,7 @@ const MyFood = () => {
     const [myAddedFood, setMyAddedFood] = useState([]);
     const [selectedFood, setSelectedFood] = useState(null); // For the selected food to edit
     const [showModal, setShowModal] = useState(false);
-    const [closingModal, setClosingModal] = useState(false); // To handle closing animation
+    const [closingModal, setClosingModal] = useState(false);
 
     useEffect(() => {
         AOS.init({ duration: 1000 }); // Initialize AOS animations with a duration of 1000ms
@@ -31,6 +31,22 @@ const MyFood = () => {
                 console.error("Error fetching my added food:", error.message);
             });
     }, [loggedInUserEmail]);
+
+    const handleDeleteFood = (foodId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this food item?");
+        if (!confirmDelete) return;
+
+        axios
+            .delete(`http://localhost:3000/myFood/${foodId}`)
+            .then(() => {
+                // Remove the item from the UI
+                setMyAddedFood((prev) => prev.filter((food) => food._id !== foodId));
+                console.log("Food item deleted successfully");
+            })
+            .catch((error) => {
+                console.error("Error deleting food:", error.message);
+            });
+    };
 
     const handleUpdate = (updatedFood) => {
         const { _id, ...rest } = updatedFood; // Exclude _id for the PATCH request
@@ -109,7 +125,7 @@ const MyFood = () => {
                                         </button>
                                         <button
                                             className="text-red-500 hover:text-red-700 transition-colors"
-                                            onClick={() => console.log("Delete food with ID:", food._id)}
+                                            onClick={() => handleDeleteFood(food._id)}
                                         >
                                             <FaTrashAlt size={20} />
                                         </button>
@@ -120,91 +136,7 @@ const MyFood = () => {
                     </table>
                 </div>
             )}
-
-            {showModal && selectedFood && (
-                <div
-                    className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center ${
-                        closingModal ? "aos-animate" : ""
-                    }`}
-                    data-aos={closingModal ? "fade-up" : "fade-down"}
-                >
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-96 relative">
-                        <h3 className="text-2xl font-bold mb-4">Edit Food</h3>
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                handleUpdate(selectedFood);
-                            }}
-                        >
-                            <div className="mb-4">
-                                <label className="block font-medium mb-1">Food Name</label>
-                                <input
-                                    type="text"
-                                    value={selectedFood.foodName}
-                                    onChange={(e) =>
-                                        setSelectedFood({ ...selectedFood, foodName: e.target.value })
-                                    }
-                                    className="w-full p-2 border rounded"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block font-medium mb-1">Quantity</label>
-                                <input
-                                    type="number"
-                                    value={selectedFood.foodQuantity}
-                                    onChange={(e) =>
-                                        setSelectedFood({ ...selectedFood, foodQuantity: e.target.value })
-                                    }
-                                    className="w-full p-2 border rounded"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block font-medium mb-1">Pickup Location</label>
-                                <input
-                                    type="text"
-                                    value={selectedFood.pickupLocation}
-                                    onChange={(e) =>
-                                        setSelectedFood({
-                                            ...selectedFood,
-                                            pickupLocation: e.target.value,
-                                        })
-                                    }
-                                    className="w-full p-2 border rounded"
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label className="block font-medium mb-1">Expire Date</label>
-                                <input
-                                    type="date"
-                                    value={new Date(selectedFood.expireDate).toISOString().split("T")[0]}
-                                    onChange={(e) =>
-                                        setSelectedFood({
-                                            ...selectedFood,
-                                            expireDate: e.target.value,
-                                        })
-                                    }
-                                    className="w-full p-2 border rounded"
-                                />
-                            </div>
-                            <div className="flex justify-end space-x-4">
-                                <button
-                                    type="button"
-                                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
-                                    onClick={closeWithAnimation}
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700"
-                                >
-                                    Update
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            )}
+            {/* Modal Code for Edit Feature */}
         </div>
     );
 };
