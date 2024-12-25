@@ -9,9 +9,9 @@ const FoodDetails = () => {
 	const [showModal, setShowModal] = useState(false)
 	const [additionalNotes, setAdditionalNotes] = useState("")
 	const navigate = useNavigate()
-	console.log(food)
+	// console.log(food)
 	const {id} = useParams()
-	console.log(id)
+	// console.log(id)
 	const {user} = useAuth()
 	const loggedInUserEmail = user.email
 
@@ -19,7 +19,7 @@ const FoodDetails = () => {
 	useEffect(() => {
 		axios.get(`http://localhost:3000/food-details/${id}`)
 		.then(result => {
-			console.log(result.data)
+			// console.log(result.data)
 			setFood(result.data)
 		})
 		.catch(error => {
@@ -35,11 +35,11 @@ const FoodDetails = () => {
             // "foodUser.foodStatus": "requested",
 			additionalNotes
 		}
-		console.log(requestData)
+		// console.log(requestData)
 
 		axios.post("http://localhost:3000/request-food",requestData)
 		.then(result => {
-			console.log(result.data)
+			// console.log(result.data)
             setFood(result.data)
 		
 			navigate('/myRequest')
