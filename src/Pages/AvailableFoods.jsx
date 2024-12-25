@@ -58,7 +58,7 @@ const AvailableFoods = () => {
                     onClick={() => setIsThreeColumn(!isThreeColumn)}
                     className="bg-cyan-500 text-white py-2 px-4 rounded hover:bg-cyan-600 transition"
                 >
-                    Toggle Layout
+              Change Layout
                 </button>
             </div>
 
