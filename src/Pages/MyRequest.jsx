@@ -3,29 +3,37 @@ import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import "aos/dist/aos.css";
 import AOS from "aos";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const MyRequest = () => {
     const [requestedFoods, setRequestedFoods] = useState([]);
     const { user } = useAuth(); 
     const loggedInUserEmail = user?.email;
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         AOS.init({ duration: 1000 }); 
     }, []);
 
     useEffect(() => {
-        if (!loggedInUserEmail) return; // Avoid making the request if the user email is not available
+        if (!loggedInUserEmail) return; 
+        
+        
+        axiosSecure.get(`/myRequest?userEmail=${loggedInUserEmail}`)
+        .then(res => {
+            setRequestedFoods(res.data);
+        })
 
-        axios
-            .get(`http://localhost:3000/myRequest?userEmail=${loggedInUserEmail}`)
-            .then((response) => {
-                console.log("Requested Foods:", response.data);
-                setRequestedFoods(response.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching requested foods:", error.message);
-            });
-    }, [loggedInUserEmail]);
+        // axios
+        //     .get(`http://localhost:3000/myRequest?userEmail=${loggedInUserEmail}`,{withCredentials:true})
+        //     .then((response) => {
+        //         console.log("Requested Foods:", response.data);
+        //         setRequestedFoods(response.data);
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error fetching requested foods:", error.message);
+        //     });
+    }, [loggedInUserEmail,axiosSecure]);
 
     return (
         <div className="min-h-screen bg-gray-100 p-6">

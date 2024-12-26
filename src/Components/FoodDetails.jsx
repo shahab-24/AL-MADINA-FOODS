@@ -41,7 +41,7 @@ const FoodDetails = () => {
 		}
 		// console.log(requestData)
 
-		axios.post("http://localhost:3000/request-food",requestData)
+		axios.post("http://localhost:3000/request-food",{withCredentials: true},requestData)
 		.then(result => {
 			// console.log(result.data)
             setFood(result.data)

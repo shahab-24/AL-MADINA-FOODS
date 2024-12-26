@@ -25,7 +25,7 @@ const MyFood = () => {
 
     setLoading(true);
     axios
-      .get(`http://localhost:3000/myFood?userEmail=${loggedInUserEmail}`)
+      .get(`http://localhost:3000/myFood?userEmail=${loggedInUserEmail}`,{withCredentials:true})
       .then((result) => {
         setMyAddedFood(result.data);
         setLoading(false);
