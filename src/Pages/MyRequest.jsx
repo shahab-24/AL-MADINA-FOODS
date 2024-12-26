@@ -6,94 +6,92 @@ import AOS from "aos";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const MyRequest = () => {
-    const [requestedFoods, setRequestedFoods] = useState([]);
-    const { user } = useAuth(); 
-    const loggedInUserEmail = user?.email;
-    const axiosSecure = useAxiosSecure();
+  const [requestedFoods, setRequestedFoods] = useState([]);
+  const { user } = useAuth();
+  const loggedInUserEmail = user?.email;
+  const axiosSecure = useAxiosSecure();
 
-    useEffect(() => {
-        AOS.init({ duration: 1000 }); 
-    }, []);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
-    useEffect(() => {
-        if (!loggedInUserEmail) return; 
-        
-        
-        axiosSecure.get(`/myRequest?userEmail=${loggedInUserEmail}`)
-        .then(res => {
-            setRequestedFoods(res.data);
-        })
+  useEffect(() => {
+    if (!loggedInUserEmail) return;
 
-        // axios
-        //     .get(`http://localhost:3000/myRequest?userEmail=${loggedInUserEmail}`,{withCredentials:true})
-        //     .then((response) => {
-        //         console.log("Requested Foods:", response.data);
-        //         setRequestedFoods(response.data);
-        //     })
-        //     .catch((error) => {
-        //         console.error("Error fetching requested foods:", error.message);
-        //     });
-    }, [loggedInUserEmail,axiosSecure]);
+    axiosSecure.get(`/myRequest?userEmail=${loggedInUserEmail}`).then((res) => {
+      setRequestedFoods(res.data);
+    });
 
-    return (
-        <div className="min-h-screen bg-gray-100 p-6">
-            <h3 className="text-4xl font-bold mb-6 text-center text-purple-700">
-                My Requested Foods
-            </h3>
-            {requestedFoods.length === 0 ? (
-                <p className="text-gray-600 text-center">
-                    You have not requested any foods yet.
-                </p>
-            ) : (
-                <div className="overflow-x-auto">
-                    <table className="table-auto w-full border-collapse shadow-lg rounded-lg overflow-hidden">
-                        <thead>
-                            <tr className="bg-gradient-to-r from-purple-500 to-purple-700 text-white text-left">
-                                <th className="p-4 text-lg font-semibold">Food Name</th>
-                                <th className="p-4 text-lg font-semibold">Image</th>
-                                <th className="p-4 text-lg font-semibold">Quantity</th>
-                                <th className="p-4 text-lg font-semibold">Location</th>
-                                <th className="p-4 text-lg font-semibold">Expires</th>
-                                <th className="p-4 text-lg font-semibold">Donator Email</th>
-                                <th className="p-4 text-lg font-semibold">Request Date</th>
-                                <th className="p-4 text-lg font-semibold">Notes</th>
-                            </tr>
-                        </thead>
-                        <tbody className="bg-gradient-to-b from-gray-50 to-gray-100">
-                            {requestedFoods.map((food, index) => (
-                                <tr
-                                    key={food._id}
-                                    data-aos={index % 2 === 0 ? "fade-left" : "fade-right"}
-                                    className="hover:bg-purple-100 transition-colors border-b border-gray-300"
-                                >
-                                    <td className="p-4 border-l-4 border-purple-500">
-                                        {food.foodName}
-                                    </td>
-                                    <td className="p-4">
-                                        <img
-                                            src={food.foodImage || "https://via.placeholder.com/150"}
-                                            alt={food.foodName}
-                                            className="w-20 h-20 object-cover rounded-md shadow-md"
-                                        />
-                                    </td>
-                                    <td className="p-4">{food.foodQuantity}</td>
-                                    <td className="p-4">{food.pickupLocation}</td>
-                                    <td className="p-4">
-                                        {new Date(food.expireDate).toLocaleString()}
-                                    </td>
-                                    <td className="p-4">{food.foodUser?.donatorEmail}</td>
-                                    <td className="p-4">{food.requestedBy?.requestDate}</td>
-                                    <td className="p-4">
-                                        {food.additionalNotes || "No additional notes"}
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+    // axios
+    //     .get(`https://al-madina-foods-server.vercel.app/myRequest?userEmail=${loggedInUserEmail}`,{withCredentials:true})
+    //     .then((response) => {
+    //         console.log("Requested Foods:", response.data);
+    //         setRequestedFoods(response.data);
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error fetching requested foods:", error.message);
+    //     });
+  }, [loggedInUserEmail, axiosSecure]);
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <h3 className="text-4xl font-bold mb-6 text-center text-purple-700">
+        My Requested Foods
+      </h3>
+      {requestedFoods.length === 0 ? (
+        <p className="text-gray-600 text-center">
+          You have not requested any foods yet.
+        </p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="table-auto w-full border-collapse shadow-lg rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-gradient-to-r from-purple-500 to-purple-700 text-white text-left">
+                <th className="p-4 text-lg font-semibold">Food Name</th>
+                <th className="p-4 text-lg font-semibold">Image</th>
+                <th className="p-4 text-lg font-semibold">Quantity</th>
+                <th className="p-4 text-lg font-semibold">Location</th>
+                <th className="p-4 text-lg font-semibold">Expires</th>
+                <th className="p-4 text-lg font-semibold">Donator Email</th>
+                <th className="p-4 text-lg font-semibold">Request Date</th>
+                <th className="p-4 text-lg font-semibold">Notes</th>
+              </tr>
+            </thead>
+            <tbody className="bg-gradient-to-b from-gray-50 to-gray-100">
+              {requestedFoods.map((food, index) => (
+                <tr
+                  key={food._id}
+                  data-aos={index % 2 === 0 ? "fade-left" : "fade-right"}
+                  className="hover:bg-purple-100 transition-colors border-b border-gray-300"
+                >
+                  <td className="p-4 border-l-4 border-purple-500">
+                    {food.foodName}
+                  </td>
+                  <td className="p-4">
+                    <img
+                      src={food.foodImage || "https://via.placeholder.com/150"}
+                      alt={food.foodName}
+                      className="w-20 h-20 object-cover rounded-md shadow-md"
+                    />
+                  </td>
+                  <td className="p-4">{food.foodQuantity}</td>
+                  <td className="p-4">{food.pickupLocation}</td>
+                  <td className="p-4">
+                    {new Date(food.expireDate).toLocaleString()}
+                  </td>
+                  <td className="p-4">{food.foodUser?.donatorEmail}</td>
+                  <td className="p-4">{food.requestedBy?.requestDate}</td>
+                  <td className="p-4">
+                    {food.additionalNotes || "No additional notes"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default MyRequest;

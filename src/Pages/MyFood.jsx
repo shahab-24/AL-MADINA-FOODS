@@ -25,7 +25,10 @@ const MyFood = () => {
 
     setLoading(true);
     axios
-      .get(`http://localhost:3000/myFood?userEmail=${loggedInUserEmail}`,{withCredentials:true})
+      .get(
+        `https://al-madina-foods-server.vercel.app/myFood?userEmail=${loggedInUserEmail}`,
+        { withCredentials: true }
+      )
       .then((result) => {
         setMyAddedFood(result.data);
         setLoading(false);
@@ -48,13 +51,26 @@ const MyFood = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:3000/myFood/${foodId}`)
+          .delete(
+            `https://al-madina-foods-server.vercel.app/myFood/${foodId}`,
+            { withCredentials: true }
+          )
           .then(() => {
-            Swal.fire("Deleted!", "Your food item has been deleted.", "success");
-            setMyAddedFood((prev) => prev.filter((food) => food._id !== foodId));
+            Swal.fire(
+              "Deleted!",
+              "Your food item has been deleted.",
+              "success"
+            );
+            setMyAddedFood((prev) =>
+              prev.filter((food) => food._id !== foodId)
+            );
           })
           .catch(() => {
-            Swal.fire("Error!", "Something went wrong while deleting.", "error");
+            Swal.fire(
+              "Error!",
+              "Something went wrong while deleting.",
+              "error"
+            );
           });
       }
     });
@@ -63,11 +79,15 @@ const MyFood = () => {
   const handleUpdate = (updatedFood) => {
     const { _id, ...rest } = updatedFood;
     axios
-      .patch(`http://localhost:3000/myFood/${_id}`, rest)
+      .patch(`https://al-madina-foods-server.vercel.app/myFood/${_id}`, rest, {
+        withCredentials: true,
+      })
       .then(() => {
         Swal.fire("Updated!", "Your food item has been updated.", "success");
         setMyAddedFood((prev) =>
-          prev.map((food) => (food._id === updatedFood._id ? updatedFood : food))
+          prev.map((food) =>
+            food._id === updatedFood._id ? updatedFood : food
+          )
         );
         closeWithAnimation();
       })
@@ -111,11 +131,14 @@ const MyFood = () => {
           ))}
         </div>
       ) : myAddedFood.length === 0 ? (
-        <p className="text-gray-600 text-center">You have not added any foods yet.</p>
+        <p className="text-gray-600 text-center">
+          You have not added any foods yet.
+        </p>
       ) : (
-		
         <div className="overflow-x-auto">
-			<h3 className="text-green-500 font-semibold text-xl mb-4">My Added Foods:  {myAddedFood.length}</h3>
+          <h3 className="text-green-500 font-semibold text-xl mb-4">
+            My Added Foods: {myAddedFood.length}
+          </h3>
           <table className="table-auto w-full border-collapse shadow-md rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-gradient-to-r from-green-400 to-green-600 text-white text-left">
@@ -133,7 +156,9 @@ const MyFood = () => {
                   data-aos={index % 2 === 0 ? "zoom-in" : "zoom-in-up"}
                   className="hover:bg-green-100 transition-colors border-b border-gray-300"
                 >
-                  <td className="p-4 border-l-4 border-green-500">{food.foodName}</td>
+                  <td className="p-4 border-l-4 border-green-500">
+                    {food.foodName}
+                  </td>
                   <td className="p-4">
                     <img
                       src={food.foodImage || "https://via.placeholder.com/150"}
@@ -180,7 +205,10 @@ const MyFood = () => {
                   type="text"
                   value={selectedFood.foodName}
                   onChange={(e) =>
-                    setSelectedFood({ ...selectedFood, foodName: e.target.value })
+                    setSelectedFood({
+                      ...selectedFood,
+                      foodName: e.target.value,
+                    })
                   }
                   className="w-full p-2 border rounded"
                 />
@@ -191,13 +219,18 @@ const MyFood = () => {
                   type="number"
                   value={selectedFood.foodQuantity}
                   onChange={(e) =>
-                    setSelectedFood({ ...selectedFood, foodQuantity: e.target.value })
+                    setSelectedFood({
+                      ...selectedFood,
+                      foodQuantity: e.target.value,
+                    })
                   }
                   className="w-full p-2 border rounded"
                 />
               </div>
               <div className="mb-4">
-                <label className="block font-medium mb-1">Pickup Location</label>
+                <label className="block font-medium mb-1">
+                  Pickup Location
+                </label>
                 <input
                   type="text"
                   value={selectedFood.pickupLocation}

@@ -26,18 +26,22 @@ const { loginUser,setErr, setUser , err, handleGoogleLogin} = useAuth();
 	const password = form.password.value;
 
 
-form.reset()
+
 setErr("")
 	loginUser(email, password)
 	.then(result => {
     const user = result.user;
+    
     if(user){
       toast.success("login successfull")
+      setUser(user)
+      navigate('/')
+      
 
     }
       
   
- navigate(location?.state? location.state: "/")
+
  
 		})
 	
