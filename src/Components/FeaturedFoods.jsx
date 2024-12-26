@@ -10,6 +10,8 @@ const FeaturedFoods = () => {
         axios
             .get('http://localhost:3000/featured-foods')
             .then(result => {
+            
+
                 setFeaturedFoods(result.data);
             })
             .catch(error => {
@@ -32,14 +34,15 @@ const FeaturedFoods = () => {
                         transition={{ duration: 0.5 }}
                     >
                         <img
-                            src={food.foodImage || "https://via.placeholder.com/150"}
+                            src={food?.foodImage || "Food Image"}
                             alt={food.foodName}
                             className="w-full h-48 object-cover rounded-md mb-4"
                         />
-                        <h3 className="text-xl font-semibold mb-2">{food.foodName}</h3>
-                        <p className="text-gray-700">Location: {food.pickupLocation}</p>
-                        <p className="text-gray-700">Expires: {new Date(food.expireDate).toLocaleDateString()}</p>
-                        <p className="text-gray-700">Donator: {food.foodUser.donatorEmail}</p>
+                        <h3 className="text-xl font-semibold mb-2">Quantity: {food.foodQuantity || "N/A"}</h3>
+                        <h3 className="text-xl font-semibold mb-2">Item Name: {food.foodName || "N/A"}</h3>
+                        <p className="text-gray-700">Location: {food.pickupLocation || "N/A"}</p>
+                        <p className="text-gray-700">Expires: {new Date(food.expireDate).toLocaleDateString() || "N/A"}</p>
+                        <p className="text-gray-700">Donator: {food.foodUser?.donatorEmail || "N/A"}</p>
                     </motion.div>
                 ))}
             </div>

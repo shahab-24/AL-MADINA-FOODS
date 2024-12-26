@@ -12,6 +12,7 @@ import MyFood from "../Pages/MyFood";
 import MyRequest from "../Pages/MyRequest";
 import ErrorPage from "../Pages/ErrorPage";
 import FoodDetails from "../Components/FoodDetails";
+import PrivateRoute from "./PrivateRoute";
 
 
   const router = createBrowserRouter([
@@ -40,28 +41,31 @@ import FoodDetails from "../Components/FoodDetails";
 	  },
 	  {
 		path: 'addFood',
-		element: <AddFood></AddFood>
+		element:<PrivateRoute> <AddFood></AddFood></PrivateRoute>
 	  },
 	  {
 		path: 'myFood',
-		element: <MyFood></MyFood>
+		element: <PrivateRoute><MyFood></MyFood></PrivateRoute>
 	  },
 	  {
 		path: 'myRequest',
-		element: <MyRequest></MyRequest>
+		element: <PrivateRoute><MyRequest></MyRequest></PrivateRoute>
 	  },
 	  {
 		path: 'food-details/:id',
 		element: <FoodDetails></FoodDetails>
 	  },
+	  
 
 	  ]
+	  
 	  
 	},
 	{
 		path: '*',
 		element: <ErrorPage></ErrorPage>
-	  },
+	  }
+	
 
   ]);
 
