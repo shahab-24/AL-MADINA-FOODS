@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 import auth from "../Firebase.config";
 import {toast } from 'react-toastify';
 import { Navigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -52,10 +53,24 @@ const AuthProvider = ({children}) => {
 
 	useEffect(() => {
 		const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-			if(currentUser){
+			if(currentUser?.email){
 				console.log("current user from authState",currentUser)
-				setUser(currentUser)
+				const user = {email : currentUser.email}
+				axios.post("http://localhost:3000/jwt", user, {
+					withCredentials: true
+				})
+				.then(result =>console.log("login token",result.data))
+				.catch(error => {
+					console.log(error.message)
+				})
+
+				// setUser(currentUser)
 				setLoading(false)
+			}else{
+				axios.post("http://localhost:3000/logout",{ },{
+					withCredentials:true
+				})
+				.then(result => console.log("logout",result.data))
 			}
 		})
 		return () => {

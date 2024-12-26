@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
 
@@ -13,9 +13,13 @@ const FoodDetails = () => {
 	const {id} = useParams()
 	// console.log(id)
 	const {user} = useAuth()
-	const loggedInUserEmail = user.email
+	const loggedInUserEmail = user?.email
 
-	console.log(loggedInUserEmail)
+	// console.log(loggedInUserEmail)
+    if(!loggedInUserEmail){
+        navigate("/login")
+    }
+
 	useEffect(() => {
 		axios.get(`http://localhost:3000/food-details/${id}`)
 		.then(result => {

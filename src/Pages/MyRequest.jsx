@@ -6,11 +6,11 @@ import AOS from "aos";
 
 const MyRequest = () => {
     const [requestedFoods, setRequestedFoods] = useState([]);
-    const { user } = useAuth(); // Assuming useAuth provides the logged-in user
+    const { user } = useAuth(); 
     const loggedInUserEmail = user?.email;
 
     useEffect(() => {
-        AOS.init({ duration: 1000 }); // Initialize AOS animations with a duration of 1000ms
+        AOS.init({ duration: 1000 }); 
     }, []);
 
     useEffect(() => {
@@ -73,8 +73,8 @@ const MyRequest = () => {
                                     <td className="p-4">
                                         {new Date(food.expireDate).toLocaleString()}
                                     </td>
-                                    <td className="p-4">{food.foodUser.donatorEmail}</td>
-                                    <td className="p-4">{food.requestedBy.requestDate}</td>
+                                    <td className="p-4">{food.foodUser?.donatorEmail}</td>
+                                    <td className="p-4">{food.requestedBy?.requestDate}</td>
                                     <td className="p-4">
                                         {food.additionalNotes || "No additional notes"}
                                     </td>
