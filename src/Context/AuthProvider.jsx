@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
   const navigate = useNavigate()
+  
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -40,7 +41,8 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
         console.log(user);
         toast.success("Login successful");
-		navigate("/");
+        navigate('/')
+	
       })
       .catch((error) => {
         console.log(error.message);
@@ -64,8 +66,9 @@ const AuthProvider = ({ children }) => {
             console.log(error.message);
           });
 
-        // setUser(currentUser)
+        setUser(currentUser)
         setLoading(false);
+        navigate('/')
       } else {
         axios
           .post(
@@ -75,7 +78,8 @@ const AuthProvider = ({ children }) => {
               withCredentials: true,
             }
           )
-          .then((result) => console.log("logout", result.data));
+          .then((result) => { setUser(null)
+            console.log("logout", result.data)});
       }
     });
     return () => {
@@ -88,6 +92,7 @@ const AuthProvider = ({ children }) => {
     signOut(auth)
       .then(() => {
         setUser(null);
+        navigate('/')
       })
       .catch((error) => {
         setErr(error.message);
