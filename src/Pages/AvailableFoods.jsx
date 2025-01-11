@@ -75,15 +75,16 @@ const AvailableFoods = () => {
         {filteredFoods.map((food, index) => (
           <div
             key={food._id}
-            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform"
+            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform flex flex-col"
             data-aos={index % 2 === 0 ? "fade-right" : "fade-left"} // Alternating animations
+            style={{ minHeight: "380px" }} // Standardized card height
           >
             <img
               src={food.foodImage}
               alt={food.foodName}
               className="w-full h-48 object-cover"
             />
-            <div className="p-4">
+            <div className="p-4 flex-grow">
               <h2 className="text-2xl font-bold text-white mb-2">
                 {food.foodName}
               </h2>
@@ -94,11 +95,13 @@ const AvailableFoods = () => {
                 <strong>Location:</strong> {food.pickupLocation}
               </p>
               <p className="text-gray-400 mb-1">
-                <strong>Expires:</strong>{" "}
+                <strong>Expires:</strong> {" "}
                 {new Date(food.expireDate).toLocaleString()}
               </p>
               <p className="text-gray-500 italic mb-3">
-                {food.additionalNotes || "No additional notes provided."}
+                {food.additionalNotes?.length > 100
+                  ? `${food.additionalNotes.slice(0, 100)}...`
+                  : food.additionalNotes || "No additional notes provided."}
               </p>
               <div className="flex items-center mb-4">
                 <img
@@ -113,6 +116,8 @@ const AvailableFoods = () => {
                   {food.foodUser?.donatorEmail}
                 </p>
               </div>
+            </div>
+            <div className="p-4">
               <Link to={`/food-details/${food._id}`}>
                 <button className="w-full py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition">
                   View Details

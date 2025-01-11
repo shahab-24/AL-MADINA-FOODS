@@ -66,6 +66,12 @@ const FoodDetails = () => {
             )
             .then((result) => {
               setFood(result.data);
+              Swal.fire({
+                icon: "success",
+                title: "Request Accepted",
+                text: `Requested the food: ${food.foodName}, added to your cart`,
+                confirmButtonColor: "#a855f7", // Custom button color
+              });
               setShowModal(false);
               navigate("/myRequest");
             })

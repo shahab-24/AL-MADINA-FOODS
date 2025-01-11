@@ -1,13 +1,23 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeProvider";
 
 
 const HomeLayout = () => {
+    const {theme} = useContext(ThemeContext)
 	return (
-		<div>
+		<div   className={`min-h-screen ${
+            theme === "light"
+              ? "bg-white text-primary-light"
+              : "bg-navbarDark text-textDark"
+          } transition-colors duration-300`}>
 			<Navbar></Navbar>
-			<Outlet></Outlet>
+            <main className="">
+            <Outlet></Outlet>
+            </main>
+			
 			<Footer></Footer>
 		</div>
 	);

@@ -22,7 +22,7 @@ const BecomeVolunteerForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await axiosSecure.post('https://al-madina-foods-server.vercel.app/volunteer-request', values);
+      await axiosSecure.post('https://al-madina-foods-server.vercel.app/volunteer-request', values,{withCredentials: true});
       // Show SweetAlert on success
       Swal.fire({
         icon: 'success',

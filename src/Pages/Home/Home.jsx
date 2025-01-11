@@ -8,11 +8,11 @@ import RecentlyAddedFoods from "../../Components/RecentlyAddedFoods";
 const Home = () => {
   return (
     <div>
-      <div className="my-20 h-[400px]">
+      <div className="my-30 h-[400px]">
         {" "}
         <Banner></Banner>
       </div>
-      <div className="my-20">
+      <div className="lg:mt-56">
         <FeaturedFoods></FeaturedFoods>
       </div>
       <RecentlyAddedFoods></RecentlyAddedFoods>

@@ -15,10 +15,10 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="footer footer-center bg-gray-900 text-gray-300 p-10">
+    <footer className="footer  bg-purple-700 footer-center  text-gray-300 p-10">
       <aside>
         <img src="../assets/logo.png" alt="" />
-        <p className="font-bold text-purple-800 text-lg falling-text">
+        <p className="font-bold text-white text-lg falling-text">
           AL-MADINA Foods.
         </p>
         <p className="text-sm">Providing healthy & reliable Foods since 1992</p>

@@ -18,7 +18,7 @@ const FeaturedFoods = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-blue-600 p-8 mt-[140px]">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-blue-600 p-8 lg:mt-[140px] lg:mt-50">
       {" "}
       {/* Adjusted margin-top */}
       <h2 className="text-3xl font-semibold text-white text-center mb-8">
