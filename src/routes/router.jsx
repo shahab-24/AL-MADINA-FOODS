@@ -13,6 +13,7 @@ import MyRequest from "../Pages/MyRequest";
 import ErrorPage from "../Pages/ErrorPage";
 import FoodDetails from "../Components/FoodDetails";
 import PrivateRoute from "./PrivateRoute";
+import BecomeVolunteerForm from "../Pages/BecomeVolunteerForm";
 
 
   const router = createBrowserRouter([
@@ -54,7 +55,10 @@ import PrivateRoute from "./PrivateRoute";
 	  {
 		path: 'food-details/:id',
 		element: <FoodDetails></FoodDetails>
-	  },
+	  },{
+        path: '/becomeVolunteeer',
+        element: <BecomeVolunteerForm></BecomeVolunteerForm>
+      }
 	  
 
 	  ]
