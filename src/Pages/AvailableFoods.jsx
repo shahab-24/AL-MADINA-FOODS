@@ -13,7 +13,7 @@ const AvailableFoods = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 1200 }); // Initialize AOS with a different duration
 
     axios
       .get("https://al-madina-foods-server.vercel.app/available-foods")
@@ -35,78 +35,90 @@ const AvailableFoods = () => {
 
   return (
     <div
-      className="min-h-screen bg-cover bg-center p-6"
+      className="min-h-screen bg-gray-900 p-6"
       style={{
         backgroundImage:
-          "url(https://images.unsplash.com/photo-1528690942004-5b2e8ca2ec45?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080)",
-        backgroundColor: "rgba(0, 0, 0, 0.6)",
+          "url(https://images.unsplash.com/photo-1600279184643-9a4c2b726c9c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080)",
         backgroundBlendMode: "overlay",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <h1 className="text-4xl font-bold text-center mb-8 text-white">
         Available Foods
       </h1>
 
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <input
           onChange={(e) => setSearchText(e.target.value)}
           type="search"
           name="searchTerm"
           value={searchText}
           placeholder="Search foods..."
-          className="bg-transparent border-2 border-cyan-500 my-4 w-[30%] rounded-xl py-2 px-2 text-white"
+          className="bg-gray-800 border-2 border-cyan-500 w-full sm:w-[40%] rounded-xl py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-cyan-600 transition mb-4 sm:mb-0"
         />
         <button
           onClick={() => setIsThreeColumn(!isThreeColumn)}
-          className="bg-cyan-500 text-white py-2 px-4 rounded hover:bg-cyan-600 transition"
+          className="bg-cyan-500 text-white py-2 px-6 rounded-xl hover:bg-cyan-600 transition"
         >
-          Change Layout
+          {isThreeColumn ? "Switch to Two Columns" : "Switch to Three Columns"}
         </button>
       </div>
 
       <div
-        className={`grid ${
+        className={`grid gap-8 ${
           isThreeColumn
             ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             : "grid-cols-1 sm:grid-cols-2"
-        } gap-6`}
+        }`}
       >
-        {filteredFoods.map((food) => (
+        {filteredFoods.map((food, index) => (
           <div
             key={food._id}
-            className="bg-white rounded-lg shadow-lg p-4 hover:shadow-xl transition-shadow"
-            data-aos="fade-up"
+            className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform"
+            data-aos={index % 2 === 0 ? "fade-right" : "fade-left"} // Alternating animations
           >
             <img
               src={food.foodImage}
               alt={food.foodName}
-              className="w-full h-48 object-cover rounded-md mb-4"
+              className="w-full h-48 object-cover"
             />
-            <h2 className="text-2xl font-semibold mb-2">{food.foodName}</h2>
-            <p className="text-gray-700">Quantity: {food.foodQuantity}</p>
-            <p className="text-gray-700">Location: {food.pickupLocation}</p>
-            <p className="text-gray-700">
-              Expires: {new Date(food.expireDate).toLocaleString()}
-            </p>
-            <p className="text-gray-600 mt-2 italic">{food.additionalNotes}</p>
-            <div className="mt-4 flex items-center">
-              <img
-                src={
-                  food.foodUser?.donatorImage ||
-                  "https://via.placeholder.com/50"
-                }
-                alt="Donator"
-                className="w-10 h-10 rounded-full mr-3"
-              />
-              <p className="text-sm text-gray-500">
-                {food.foodUser.donatorEmail}
+            <div className="p-4">
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {food.foodName}
+              </h2>
+              <p className="text-gray-400 mb-1">
+                <strong>Quantity:</strong> {food.foodQuantity}
               </p>
+              <p className="text-gray-400 mb-1">
+                <strong>Location:</strong> {food.pickupLocation}
+              </p>
+              <p className="text-gray-400 mb-1">
+                <strong>Expires:</strong>{" "}
+                {new Date(food.expireDate).toLocaleString()}
+              </p>
+              <p className="text-gray-500 italic mb-3">
+                {food.additionalNotes || "No additional notes provided."}
+              </p>
+              <div className="flex items-center mb-4">
+                <img
+                  src={
+                    food.foodUser?.donatorImage ||
+                    "https://via.placeholder.com/50"
+                  }
+                  alt="Donator"
+                  className="w-12 h-12 rounded-full mr-3"
+                />
+                <p className="text-sm text-gray-400">
+                  {food.foodUser?.donatorEmail}
+                </p>
+              </div>
+              <Link to={`/food-details/${food._id}`}>
+                <button className="w-full py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition">
+                  View Details
+                </button>
+              </Link>
             </div>
-            <Link to={`/food-details/${food._id}`}>
-              <button className="w-full mt-4 py-2 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition">
-                View Details
-              </button>
-            </Link>
           </div>
         ))}
       </div>

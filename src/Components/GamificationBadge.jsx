@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../Hooks/useAuth";
 
 const GamificationBadge = () => {
   const { user } = useAuth(); // Logged-in user info
@@ -17,7 +17,7 @@ const GamificationBadge = () => {
           const response = await axios.get(
             "https://al-madina-foods-server.vercel.app/donor-stats",
             {
-              params: { donatorEmail: user.email },
+              params: { email: user?.email },
             }
           );
           setDonorStats(response.data);
@@ -47,7 +47,7 @@ const GamificationBadge = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-purple-200 to-blue-200 p-10 rounded-lg shadow-lg">
+    <div className="bg-gradient-to-br from-blue-50 via-purple-100 to-blue-200 p-8 sm:p-12 rounded-lg shadow-xl">
       {loading ? (
         <div className="animate-pulse">
           <div className="h-8 bg-gray-300 rounded w-1/2 mx-auto mb-4"></div>
@@ -58,44 +58,63 @@ const GamificationBadge = () => {
       ) : (
         <>
           {/* Logged-in User Stats */}
-          <h2 className="text-3xl font-bold mb-4">Your Donation Badge</h2>
+          <h2 className="text-3xl font-bold text-gray-800 text-center mb-4">
+            Your Donation Badge
+          </h2>
           {donorStats ? (
-            <>
-              <p className="text-lg mb-6">
-                You have donated {donorStats.totalDonations} items!
+            <div className="text-center">
+              <p className="text-lg text-gray-700 mb-6">
+                You have donated{" "}
+                <span className="text-purple-600 font-bold">
+                  {donorStats.totalDonations}
+                </span>{" "}
+                items!
               </p>
-              <p className="text-lg font-semibold">
-                Current Badge: {getBadge(donorStats.totalDonations)}
+              <p className="text-lg font-semibold text-gray-700">
+                Current Badge:{" "}
+                <span className="text-purple-600">
+                  {getBadge(donorStats.totalDonations)}
+                </span>
               </p>
-            </>
+            </div>
           ) : (
-            <p className="text-gray-500">No donation data available for you.</p>
+            <p className="text-center text-gray-500">
+              No donation data available for you.
+            </p>
           )}
 
           {/* Leaderboard */}
-          <h2 className="text-3xl font-bold mt-10 mb-4">Top Donors</h2>
+          <h2 className="text-3xl font-bold text-gray-800 text-center mt-10 mb-6">
+            Top Donors
+          </h2>
           <div className="overflow-x-auto">
-            <table className="table w-full bg-white shadow-lg rounded-lg">
-              <thead>
+            <table className="table w-full bg-white rounded-lg shadow-lg">
+              <thead className="bg-purple-200 text-gray-800">
                 <tr>
-                  <th>#</th>
-                  <th>Email</th>
-                  <th>Total Donations</th>
-                  <th>Badge</th>
+                  <th className="px-4 py-2">#</th>
+                  <th className="px-4 py-2">Email</th>
+                  <th className="px-4 py-2">Total Donations</th>
+                  <th className="px-4 py-2">Badge</th>
                 </tr>
               </thead>
               <tbody>
                 {allDonors.map((donor, index) => (
                   <tr
                     key={donor._id}
-                    className={
-                      donor._id === user?.email ? "bg-green-100 font-bold" : ""
-                    }
+                    className={`${
+                      donor._id === user?.email
+                        ? "bg-green-100 font-bold"
+                        : "bg-white"
+                    }`}
                   >
-                    <td>{index + 1}</td>
-                    <td>{donor._id}</td>
-                    <td>{donor.totalDonations}</td>
-                    <td>{getBadge(donor.totalDonations)}</td>
+                    <td className="px-4 py-2 text-center">{index + 1}</td>
+                    <td className="px-4 py-2">{donor._id}</td>
+                    <td className="px-4 py-2 text-center">
+                      {donor.totalDonations}
+                    </td>
+                    <td className="px-4 py-2 text-center">
+                      {getBadge(donor.totalDonations)}
+                    </td>
                   </tr>
                 ))}
               </tbody>

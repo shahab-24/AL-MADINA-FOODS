@@ -18,17 +18,18 @@ const FeaturedFoods = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-purple-700 p-8">
+    <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-blue-600 p-8 mt-[140px]">
+      {" "}
+      {/* Adjusted margin-top */}
       <h2 className="text-3xl font-semibold text-white text-center mb-8">
         Featured Foods
       </h2>
-
       {/* Featured Foods Grid with Motion */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {featuredFoods.map((food) => (
           <motion.div
             key={food._id}
-            className="bg-white rounded-lg shadow-lg p-4"
+            className="bg-white rounded-lg shadow-lg p-4 transition-transform transform hover:scale-105"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -56,12 +57,11 @@ const FeaturedFoods = () => {
           </motion.div>
         ))}
       </div>
-
       {/* "See All" Button placed outside the grid */}
       <div className="text-center mt-8">
         <Link to="/availableFoods">
           <motion.button
-            className="py-2 px-6 bg-cyan-500 text-white rounded-lg hover:bg-cyan-600 transition"
+            className="py-2 px-6 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}

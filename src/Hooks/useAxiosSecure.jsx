@@ -5,7 +5,6 @@ const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-
 const useAxiosSecure = () => {
   return axiosInstance;
 };

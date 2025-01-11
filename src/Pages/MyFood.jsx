@@ -27,7 +27,9 @@ const MyFood = () => {
     axios
       .get(
         `https://al-madina-foods-server.vercel.app/myFood?userEmail=${loggedInUserEmail}`,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       )
       .then((result) => {
         setMyAddedFood(result.data);
@@ -53,7 +55,9 @@ const MyFood = () => {
         axios
           .delete(
             `https://al-madina-foods-server.vercel.app/myFood/${foodId}`,
-            { withCredentials: true }
+            {
+              withCredentials: true,
+            }
           )
           .then(() => {
             Swal.fire(
@@ -110,8 +114,11 @@ const MyFood = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <h2 className="text-4xl font-bold mb-6 text-center text-green-600">
+    <div className="min-h-screen bg-gradient-to-br from-green-100 via-green-50 to-green-200 p-6">
+      <h2
+        className="text-4xl font-bold mb-6 text-center text-green-700"
+        data-aos="fade-down"
+      >
         My Added Foods
       </h2>
 
@@ -131,7 +138,10 @@ const MyFood = () => {
           ))}
         </div>
       ) : myAddedFood.length === 0 ? (
-        <p className="text-gray-600 text-center">
+        <p
+          className="text-gray-600 text-center text-lg font-medium"
+          data-aos="fade-up"
+        >
           You have not added any foods yet.
         </p>
       ) : (
@@ -139,7 +149,7 @@ const MyFood = () => {
           <h3 className="text-green-500 font-semibold text-xl mb-4">
             My Added Foods: {myAddedFood.length}
           </h3>
-          <table className="table-auto w-full border-collapse shadow-md rounded-lg overflow-hidden">
+          <table className="table-auto w-full border-collapse shadow-lg rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-gradient-to-r from-green-400 to-green-600 text-white text-left">
                 <th className="p-4 text-lg font-semibold">Food Name</th>
@@ -190,8 +200,12 @@ const MyFood = () => {
       )}
 
       {showModal && selectedFood && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div
+            className={`bg-white p-6 rounded-lg shadow-lg w-96 ${
+              closingModal ? "animate-fadeOut" : "animate-fadeIn"
+            }`}
+          >
             <h3 className="text-2xl font-bold mb-4">Edit Food</h3>
             <form
               onSubmit={(e) => {

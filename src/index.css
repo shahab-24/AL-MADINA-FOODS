@@ -1,3 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Montserrat+Subrayada:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --accentLight: #FF69B4;
+    --accentDark: #8e44ad;
+  }
+
+  .btn-accent-light {
+    background-color: var(--accentLight);
+  }
+  
+  .btn-accent-dark {
+    background-color: var(--accentDark);
+  }
+  
+
+  .navbar-dark {
+    background-color: var(--navbarDark);
+  }
+  
+  .navbar-light {
+    background-color: var(--navbarLight);
+  }
+  .navbar-text-dark {
+    color: var(--textDark);
+  }
+  
+  .navbar-text-light {
+    color: var(--textLight);
+  }
+  
+  .navbar-button-dark {
+    background-color: var(--buttonDark);
+  }
+  
+  .navbar-button-light {
+    background-color: var(--buttonLight);
+  }
+  
+  .navbar-accent-dark {
+    background-color: var(--accentDark);
+  }
+  
+  .navbar-accent-light {
+    background-color: var(--accentLight);
+  }
+    
+  .falling-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: fall 0.6s ease-out forwards infinite;
+  }
+  
+  @keyframes fall {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+  @keyframes bg-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animate-bg {
+    background-size: 200% 200%;
+    animation: bg-animation 6s ease infinite;
+  }
+    

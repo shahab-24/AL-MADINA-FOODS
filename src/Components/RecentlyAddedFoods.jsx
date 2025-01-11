@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 
@@ -24,8 +24,8 @@ const RecentlyAddedFoods = () => {
   }, []);
 
   return (
-    <div className="mb-16">
-      <h2 className="text-3xl font-bold text-center mb-6">
+    <div className="min-h-screen bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 py-12 px-4 sm:px-8 lg:px-16">
+      <h2 className="text-3xl font-bold text-center text-white mb-8">
         Recently Added Foods
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -65,7 +65,7 @@ const RecentlyAddedFoods = () => {
             </motion.div>
           ))
         ) : (
-          <p className="text-center text-gray-500">
+          <p className="text-center text-white">
             No recently added foods available.
           </p>
         )}

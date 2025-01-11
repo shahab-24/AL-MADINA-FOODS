@@ -5,10 +5,11 @@ import "aos/dist/aos.css";
 import useAuth from "../Hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
   const { user, setErr } = useAuth();
-  // const [foods, setFoods] = useState()
+  const [foods, setFoods] = useState([]);
   const {
     register,
     handleSubmit,
@@ -18,10 +19,18 @@ const AddFood = () => {
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
-  }, []);
+    axios
+      .get("https://al-madina-foods-server.vercel.app/foods", {
+        withCredentials: true,
+      })
+      .then((res) => setFoods(res.data))
+      .catch((error) => {
+        Swal.fire("Error!", error.message, "error");
+        setErr(error.message);
+      });
+  }, [setErr]);
 
   const onSubmit = (data) => {
-    // console.log(data);
     const foodUser = {
       donatorName: user.name,
       donatorEmail: user.email,
@@ -29,51 +38,63 @@ const AddFood = () => {
       foodStatus: "available",
     };
     const newFood = { ...data, foodUser };
-    console.log("food", newFood);
+
+    const exists = foods.some(
+      (item) =>
+        item.foodName === newFood.foodName &&
+        item.pickupLocation === newFood.pickupLocation &&
+        item.expireDate === newFood.expireDate
+    );
+
+    if (exists) {
+      Swal.fire({
+        icon: "warning",
+        title: "Duplicate Entry",
+        text: "This food item already exists!",
+      });
+      return;
+    }
 
     axios
       .post("https://al-madina-foods-server.vercel.app/add-foods", newFood, {
         withCredentials: true,
       })
       .then((res) => {
-        // setFoods(res.data)
-        console.log(res.data);
+        setFoods((prev) => [...prev, res.data]);
         reset();
         toast.success("Food added successfully");
       })
       .catch((error) => {
+        Swal.fire("Error!", error.message, "error");
         setErr(error.message);
       });
-    // Post data to the backend
-    // axios.post('/api/foods', data)
-    //   .then(response => console.log(response))
-    //   .catch(error => console.error(error));
   };
+
   return (
     <div
       className="min-h-screen flex items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: "url('https://ibb.co.com/NpbFXDQ')",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
+        backgroundImage: "url('https://via.placeholder.com/1500x1000')",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
         backgroundBlendMode: "overlay",
       }}
     >
-      <div className="container mx-auto p-8">
+      <div className="container mx-auto p-4 sm:p-6 md:p-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
         <h1
-          className="text-3xl font-bold text-center mb-8 text-white"
+          className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800"
           data-aos="fade-up"
         >
           Add Food
         </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
         >
           {/* Food Name */}
           <div data-aos="fade-right">
             <label
               htmlFor="foodName"
-              className="block text-lg font-semibold text-white mb-2"
+              className="block text-lg font-semibold text-gray-700 mb-2"
             >
               Food Name
             </label>
@@ -81,10 +102,12 @@ const AddFood = () => {
               type="text"
               id="foodName"
               {...register("foodName", { required: "Food Name is required" })}
-              className="w-full h-12 px-4 border-2 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             />
             {errors.foodName && (
-              <p className="text-red-500 text-sm">{errors.foodName.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.foodName.message}
+              </p>
             )}
           </div>
 
@@ -92,7 +115,7 @@ const AddFood = () => {
           <div data-aos="fade-left">
             <label
               htmlFor="foodImage"
-              className="block text-lg font-semibold text-white mb-2"
+              className="block text-lg font-semibold text-gray-700 mb-2"
             >
               Food Image URL
             </label>
@@ -100,10 +123,12 @@ const AddFood = () => {
               type="text"
               id="foodImage"
               {...register("foodImage", { required: "Food Image is required" })}
-              className="w-full h-12 px-4 border-2 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             />
             {errors.foodImage && (
-              <p className="text-red-500 text-sm">{errors.foodImage.message}</p>
+              <p className="text-red-500 text-sm mt-1">
+                {errors.foodImage.message}
+              </p>
             )}
           </div>
 
@@ -111,7 +136,7 @@ const AddFood = () => {
           <div data-aos="fade-right">
             <label
               htmlFor="foodQuantity"
-              className="block text-lg font-semibold text-white mb-2"
+              className="block text-lg font-semibold text-gray-700 mb-2"
             >
               Food Quantity
             </label>
@@ -121,10 +146,10 @@ const AddFood = () => {
               {...register("foodQuantity", {
                 required: "Food Quantity is required",
               })}
-              className="w-full h-12 px-4 border-2 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             />
             {errors.foodQuantity && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-1">
                 {errors.foodQuantity.message}
               </p>
             )}
@@ -134,7 +159,7 @@ const AddFood = () => {
           <div data-aos="fade-left">
             <label
               htmlFor="pickupLocation"
-              className="block text-lg font-semibold text-white mb-2"
+              className="block text-lg font-semibold text-gray-700 mb-2"
             >
               Pickup Location
             </label>
@@ -144,10 +169,10 @@ const AddFood = () => {
               {...register("pickupLocation", {
                 required: "Pickup Location is required",
               })}
-              className="w-full h-12 px-4 border-2 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             />
             {errors.pickupLocation && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-1">
                 {errors.pickupLocation.message}
               </p>
             )}
@@ -157,20 +182,20 @@ const AddFood = () => {
           <div data-aos="fade-right">
             <label
               htmlFor="expireDate"
-              className="block text-lg font-semibold text-white mb-2"
+              className="block text-lg font-semibold text-gray-700 mb-2"
             >
-              Expire Date/Time
+              Expire Date
             </label>
             <input
-              type="datetime-local"
+              type="date"
               id="expireDate"
               {...register("expireDate", {
                 required: "Expire Date is required",
               })}
-              className="w-full h-12 px-4 border-2 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
             />
             {errors.expireDate && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mt-1">
                 {errors.expireDate.message}
               </p>
             )}
@@ -180,7 +205,7 @@ const AddFood = () => {
           <div data-aos="fade-left">
             <label
               htmlFor="additionalNotes"
-              className="block text-lg font-semibold text-white mb-2"
+              className="block text-lg font-semibold text-gray-700 mb-2"
             >
               Additional Notes
             </label>
@@ -188,15 +213,15 @@ const AddFood = () => {
               id="additionalNotes"
               rows="3"
               {...register("additionalNotes")}
-              className="w-full px-4 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-            />
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+            ></textarea>
           </div>
 
           {/* Submit Button */}
-          <div className="col-span-2" data-aos="fade-up">
+          <div className="col-span-1 sm:col-span-2" data-aos="fade-up">
             <button
               type="submit"
-              className="w-full h-12 bg-blue-600 text-white rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition duration-300"
             >
               Add Food
             </button>

@@ -1,18 +1,20 @@
 import Lottie from "lottie-react";
 import lottieLoginData from "../../assets/login.json";
-import useAuth from "../../Hooks/useAuth";
+import useAuth from '../../Hooks/useAuth'
 
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 
 const Login = () => {
 const { loginUser,setErr, setUser , err, handleGoogleLogin} = useAuth();
-  const location = useLocation()
-  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
+
+  const navigate = useNavigate()
+  const location  = useLocation()
+   const from = location.state?.from?.pathname || "/" ;
 
   const handleShowPassword =() => {
     setShowPassword(!showPassword)
@@ -35,10 +37,11 @@ setErr("")
     if(user){
       toast.success("login successfull")
       setUser(user)
-      navigate('/')
-      
+      navigate(from, {replace: true})
+    
 
     }
+
       
   
 
@@ -105,7 +108,7 @@ setErr("")
         <p className="text-center">Or</p>
           <div className="mt-6 flex flex-col items-center gap-4 mb-10 px-8">
           <button
-            onClick={handleGoogleLogin}
+            onClick={()=>handleGoogleLogin(navigate, location)}
             className="btn btn-outline w-full flex items-center gap-2"
           >
             Login with Google

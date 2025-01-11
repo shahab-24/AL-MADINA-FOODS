@@ -10,15 +10,17 @@ import {
 } from "firebase/auth";
 import auth from "../Firebase.config";
 import { toast } from "react-toastify";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
-  const navigate = useNavigate()
-  
+
+  //   const location = useLocation()
+  //     const navigate = useNavigate()
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -41,8 +43,9 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
         console.log(user);
         toast.success("Login successful");
-        navigate('/')
-	
+        //  const from = location.state?.from?.pathname || "/";
+        // navigate(from, {replace: true})
+        // <Navigate to='/' state={{from: location}} replace></Navigate>
       })
       .catch((error) => {
         console.log(error.message);
@@ -66,9 +69,9 @@ const AuthProvider = ({ children }) => {
             console.log(error.message);
           });
 
-        setUser(currentUser)
+        setUser(currentUser);
         setLoading(false);
-        navigate('/')
+        // navigate('/')
       } else {
         axios
           .post(
@@ -78,8 +81,10 @@ const AuthProvider = ({ children }) => {
               withCredentials: true,
             }
           )
-          .then((result) => { setUser(null)
-            console.log("logout", result.data)});
+          .then((result) => {
+            setUser(null);
+            console.log("logout", result.data);
+          });
       }
     });
     return () => {
@@ -92,7 +97,7 @@ const AuthProvider = ({ children }) => {
     signOut(auth)
       .then(() => {
         setUser(null);
-        navigate('/')
+        // navigate('/')
       })
       .catch((error) => {
         setErr(error.message);

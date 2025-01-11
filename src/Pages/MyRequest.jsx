@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Hooks/useAuth";
-import axios from "axios";
+
 import "aos/dist/aos.css";
 import AOS from "aos";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
@@ -18,35 +18,39 @@ const MyRequest = () => {
   useEffect(() => {
     if (!loggedInUserEmail) return;
 
-    axiosSecure.get(`/myRequest?userEmail=${loggedInUserEmail}`).then((res) => {
-      setRequestedFoods(res.data);
-    });
-
-    // axios
-    //     .get(`https://al-madina-foods-server.vercel.app/myRequest?userEmail=${loggedInUserEmail}`,{withCredentials:true})
-    //     .then((response) => {
-    //         console.log("Requested Foods:", response.data);
-    //         setRequestedFoods(response.data);
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error fetching requested foods:", error.message);
-    //     });
+    axiosSecure
+      .get(`/myRequest?userEmail=${loggedInUserEmail}`)
+      .then((res) => {
+        setRequestedFoods(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching requested foods:", error.message);
+      });
   }, [loggedInUserEmail, axiosSecure]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <h3 className="text-4xl font-bold mb-6 text-center text-purple-700">
+    <div className="min-h-screen bg-gradient-to-br from-purple-200 via-purple-100 to-purple-300 p-6">
+      <h3
+        className="text-4xl font-bold mb-6 text-center text-purple-700"
+        data-aos="zoom-in"
+      >
         My Requested Foods
       </h3>
       {requestedFoods.length === 0 ? (
-        <p className="text-gray-600 text-center">
+        <p
+          className="text-gray-700 text-center text-lg font-medium"
+          data-aos="fade-up"
+        >
           You have not requested any foods yet.
         </p>
       ) : (
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border-collapse shadow-lg rounded-lg overflow-hidden">
+        <div
+          className="overflow-x-auto bg-white rounded-lg shadow-lg p-4"
+          data-aos="fade-up"
+        >
+          <table className="table-auto w-full border-collapse">
             <thead>
-              <tr className="bg-gradient-to-r from-purple-500 to-purple-700 text-white text-left">
+              <tr className="bg-gradient-to-r from-purple-600 to-purple-800 text-white text-left">
                 <th className="p-4 text-lg font-semibold">Food Name</th>
                 <th className="p-4 text-lg font-semibold">Image</th>
                 <th className="p-4 text-lg font-semibold">Quantity</th>

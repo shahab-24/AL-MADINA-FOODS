@@ -1,34 +1,30 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { motion } from "framer-motion"; // Import Framer Motion for animation
+import { motion } from "framer-motion";
 
 const FoodSlider = () => {
   const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state to manage the loading skeleton
+  const [loading, setLoading] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Fetching food data from the server
     axios
       .get("https://al-madina-foods-server.vercel.app/featured-foods")
       .then((result) => {
-        setFoods(result.data); // Set the fetched foods
-        setLoading(false); // Stop the loading animation once data is fetched
+        setFoods(result.data);
+        setLoading(false);
       })
       .catch((error) => {
-        console.log(error.message);
-        setLoading(false); // Stop the loading animation if there is an error
+        console.error(error.message);
+        setLoading(false);
       });
   }, []);
 
-  // State to control the index of the currently displayed food item
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  // Function to move to the next slide
+  // Slide Navigation Functions
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % foods.length);
   };
 
-  // Function to move to the previous slide
   const prevSlide = () => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + foods.length) % foods.length
@@ -36,13 +32,16 @@ const FoodSlider = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 3000); // Auto-slide every 3 seconds
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [foods.length]);
+    const interval = setInterval(nextSlide, 5000); // Auto-slide every 5 seconds
+    return () => clearInterval(interval);
+  });
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto overflow-hidden h-[400px]">
-      {/* If loading, show the skeleton loader */}
+    <div
+      className="relative w-full max-w-7xl mx-auto overflow-hidden h-[500px] bg-bannerLight dark:bg-bannerDark transition-all duration-500"
+      style={{ marginTop: "4rem", marginBottom: "4rem" }}
+    >
+      {/* Loading Skeleton */}
       {loading ? (
         <div className="w-full h-full bg-gray-200 animate-pulse rounded-lg">
           <div className="flex justify-center items-center h-full">
@@ -51,45 +50,43 @@ const FoodSlider = () => {
         </div>
       ) : (
         <motion.div
-          className="flex transition-all"
+          className="flex transition-transform duration-500"
           initial={{ x: "-100%" }}
           animate={{ x: 0 }}
-          exit={{ x: "100%" }}
-          transition={{ type: "spring", stiffness: 300 }}
         >
           {/* Slide Content */}
           {foods.length > 0 && (
             <motion.div
-              className="flex-shrink-0 w-full h-[600px]"
               key={foods[currentIndex]._id}
+              className="w-full h-[500px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
             >
-              <div className="relative w-full h-[600px]">
-                {/* Fixed Image Size with Zoom-out & Flip Animation */}
+              <div className="relative w-full h-full">
+                {/* Image with Animation */}
                 <motion.img
                   src={foods[currentIndex].foodImage}
                   alt={foods[currentIndex].foodName}
-                  className="w-full h-[600px] object-cover rounded-lg shadow-lg"
-                  initial={{ scale: 1.2 }}
+                  className="w-full h-full object-cover rounded-lg shadow-md"
+                  initial={{ scale: 1.1 }}
                   animate={{ scale: 1 }}
-                  exit={{ scale: 1.2 }}
                   transition={{
                     type: "spring",
                     stiffness: 400,
-                    damping: 20,
+                    damping: 25,
                   }}
                   whileHover={{
-                    scale: 1.05, // Slight zoom-in on hover
-                    rotateY: 10, // Flip effect on hover
+                    scale: 1.05,
+                    rotateY: 5,
                   }}
                   whileTap={{
-                    scale: 0.95, // Scale down on tap
+                    scale: 0.95,
                   }}
                 />
-                <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white p-3 rounded-lg">
+                {/* Food Name Overlay */}
+                <div className="absolute bottom-4 left-4 bg-black bg-opacity-50 text-white p-4 rounded-lg">
                   <h3 className="text-2xl font-bold">
                     {foods[currentIndex].foodName}
                   </h3>
@@ -102,11 +99,11 @@ const FoodSlider = () => {
 
       {/* Navigation Arrows */}
       <div
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 text-white p-3 cursor-pointer"
+        className="relative w-full max-w-7xl mx-auto overflow-hidden h-[500px] bg-bannerLight dark:bg-bannerDark transition-all duration-500 pt-[80px] mt-30"
         onClick={prevSlide}
       >
         <motion.span
-          whileHover={{ scale: 1.2, rotate: "-15deg" }} // Slight rotation on hover
+          whileHover={{ scale: 1.2, rotate: "-15deg" }}
           whileTap={{ scale: 0.9 }}
           className="text-4xl font-bold"
         >
@@ -114,11 +111,11 @@ const FoodSlider = () => {
         </motion.span>
       </div>
       <div
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 text-white p-3 cursor-pointer"
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white p-3 cursor-pointer"
         onClick={nextSlide}
       >
         <motion.span
-          whileHover={{ scale: 1.2, rotate: "15deg" }} // Slight rotation on hover
+          whileHover={{ scale: 1.2, rotate: "15deg" }}
           whileTap={{ scale: 0.9 }}
           className="text-4xl font-bold"
         >
