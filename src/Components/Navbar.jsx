@@ -118,7 +118,7 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl text-gray-800 dark:text-gray-100">AL-MADINA FOODS</a>
+                <a className="text-lg lg:text-xl text-gray-800 dark:text-gray-100 lg:btn-ghost">AL-MADINA FOODS</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -126,7 +126,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 <button
                     onClick={toggleTheme}
-                    className={`p-2 rounded-full ${
+                    className={`p-2 mr-1 rounded-full ${
                         theme === "light" ? "bg-accentLight" : "bg-accentDark"
                     } text-white`}
                 >
@@ -135,12 +135,12 @@ const Navbar = () => {
                 {user && user?.email ? (
                     <div className="flex items-center gap-2" title={user?.displayName}>
                         <img
-                            className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-cyan-400"
+                            className="w-10 hidden h-10 sm:w-12 sm:h-12 rounded-full border border-cyan-400"
                             src={user?.photoURL || "https://via.placeholder.com/150"}
                             alt={user?.displayName || "User"}
                             
                         />
-                        <button onClick={logOutUser} className="btn btn-outline">
+                        <button onClick={logOutUser} className="btn btn-outline bg-transparent">
                             Logout
                         </button>
                     </div>

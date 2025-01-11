@@ -1,9 +1,11 @@
-
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import useAxiosSecure from '../Hooks/useAxiosSecure';
 
 const BecomeVolunteerForm = () => {
+    const axiosSecure = useAxiosSecure()
   const initialValues = {
     name: '',
     email: '',
@@ -20,18 +22,32 @@ const BecomeVolunteerForm = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await axios.post('/api/volunteer-request', values);
-      alert('Your volunteer request has been submitted successfully!');
+      await axiosSecure.post('https://al-madina-foods-server.vercel.app/volunteer-request', values);
+      // Show SweetAlert on success
+      Swal.fire({
+        icon: 'success',
+        title: 'Your volunteer request has been submitted successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
       resetForm();
     } catch (error) {
-      alert('There was an error submitting your request. Please try again.');
+      // Show SweetAlert on error
+      Swal.fire({
+        icon: 'error',
+        title: 'There was an error submitting your request. Please try again.',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
   return (
-    <section className="bg-gray-50 py-12 px-6">
-      <div className="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Become a Volunteer</h2>
+    <section className="bg-gradient-to-r from-blue-500 to-teal-400 py-12 px-6 sm:px-12 lg:px-24">
+      <div className="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-lg transform transition duration-500 hover:scale-105 mt-20">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6 animate__animated animate__fadeIn">
+          Become a Volunteer
+        </h2>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -95,7 +111,7 @@ const BecomeVolunteerForm = () => {
               <div className="text-center">
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+                  className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Request'}

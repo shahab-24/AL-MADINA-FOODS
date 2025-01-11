@@ -56,7 +56,7 @@ import BecomeVolunteerForm from "../Pages/BecomeVolunteerForm";
 		path: 'food-details/:id',
 		element: <FoodDetails></FoodDetails>
 	  },{
-        path: '/becomeVolunteeer',
+        path: '/becomeVolunteer',
         element: <BecomeVolunteerForm></BecomeVolunteerForm>
       }
 	  
