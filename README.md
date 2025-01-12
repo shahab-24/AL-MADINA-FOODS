@@ -1,106 +1,118 @@
-Al-Madina Foods
-A modern and responsive Community Food Sharing and Surplus Reduction Platform designed to help people share and manage surplus food efficiently. Built with React, Firebase, Node.js, MongoDB, and Tailwind CSS, this project focuses on creating a user-friendly, secure, and feature-rich web application.
+# **🌟 AL-MADINA FOODS**
 
-🚀 Live Demo
-Visit Live Site: [https://al-madina-foods.web.app/]
+A modern and responsive **Community Food Sharing and Surplus Reduction Platform** designed to help connect communities, reduce food wastage, and share surplus food efficiently. Built with cutting-edge technologies like **React**, **Firebase**, **Node.js**, and **MongoDB**, the platform ensures a seamless user experience, robust security, and responsive design.
 
-🎯 Purpose
-The platform connects communities to reduce food wastage by sharing surplus food. It allows users to:
+---
 
-Add and manage food items.
-Request available foods.
-View detailed food information.
-Manage food requests and track statuses.
+## **🚀 Live Demo**
+
+👉 [Visit Live Site](#) <https://al-madina-foods.web.app/>
+
+---
+
+## **🎯 Project Overview**
+
+The **Al-Madina Foods** platform enables users to:
+- **Add and manage food items** with expiration tracking.
+- **Request available foods** and manage their requests.
+- **View detailed food information** for transparency.
+- **Connect communities** to reduce food wastage and support each other.
+
+---
+
+## **🌟 Key Features**
+
+### **Authentication**
+- Secure **email/password-based authentication** with Firebase.
+- Social login via **Google/GitHub**.
+- JWT-protected private routes for secure access.
+
+### **CRUD Functionality**
+- Add, update, delete, and manage food items.
+- Request available foods and track their statuses.
+
+### **Responsive Design**
+- Fully responsive UI for mobile, tablet, and desktop devices.
+- Professionally aligned UI with clean spacing and color contrast.
+
+### **Additional Features**
+- **Sorting and Searching**: Sort foods by expiration date or search by name.
+- **Layouts**: Toggle between two-column and three-column layouts for food display.
+- **Animations**: Smooth transitions using **Framer Motion**.
+- **Secure Configuration**: Firebase and MongoDB credentials are protected using environment variables.
+
+---
+
+## **🛠️ Tech Stack**
+
+### **Client-Side**
+| Technology       | Icon                                                                                         |
+|-------------------|----------------------------------------------------------------------------------------------|
+| **React**         | ![React](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg)       |
+| **Firebase**      | ![Firebase](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg) |
+| **Tailwind CSS**  | ![Tailwind CSS](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg) |
+| **DaisyUI**       | ![DaisyUI](https://img.shields.io/badge/-DaisyUI-5A0FC8?logoColor=white&style=flat)         |
+| **Axios**         | ![Axios](https://img.shields.io/badge/-Axios-5A29E4?logoColor=white&style=flat)             |
+| **Framer Motion** | ![Framer Motion](https://img.shields.io/badge/-Framer%20Motion-0055FF?logo=framer&logoColor=white) |
+
+### **Server-Side**
+| Technology       | Icon                                                                                         |
+|-------------------|----------------------------------------------------------------------------------------------|
+| **Node.js**       | ![Node.js](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg)    |
+| **Express.js**    | ![Express.js](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg) |
+| **MongoDB**       | ![MongoDB](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg) |
+| **JWT**           | ![JWT](https://img.shields.io/badge/-JWT-000000?logo=jsonwebtokens&logoColor=white)         |
+
+---
+
+## **📂 Folder Structure**
+
+### **Client**
+- `src/components`: Reusable UI components (e.g., Navbar, Food Cards).
+- `src/pages`: Page components (e.g., Home, Login, Register).
+- `src/context`: Context API for global state management.
+- `src/styles`: Tailwind CSS configurations.
+- `src/hooks`: Custom hooks for HTTP requests (e.g., AxiosSecure).
+
+### **Server**
+- `routes`: API routes for food management and authentication.
+- `middleware`: Authentication and error-handling middleware.
+- `models`: MongoDB schemas for food and user data.
+- `controllers`: Logic for API request handling.
+
+---
+
+## **⚙️ Installation**
+
+### **Prerequisites**
+- **Node.js**
+- **npm** or **yarn**
+- **MongoDB Database**
+- **Firebase Project**
+
+### **Steps**
+1. **Clone the Repositories**
+   ```bash
+   git clone <https://github.com/shahab-24/AL-MADINA-FOODS>
+   git clone <https://github.com/shahab-24/AL-MADINA-FOODS-server>
 
 
-🌟 Key Features
-1. Authentication
-Email/Password-based authentication with Firebase.
-Social login (Google/GitHub).
-Secure authentication using JWT tokens for private routes.
-2. CRUD Operations
-Add, update, delete, and manage foods.
-Request and manage food requests.
-3. Responsive Design
-Fully responsive across mobile, tablet, and desktop devices.
-Professionally aligned UI with clean spacing and color contrast.
-4. Featured Foods
-Highlight the top available food items on the home page.
-5. Sorting & Searching
-Sort available foods by expiration date.
-Search foods by name.
-6. Food Details
-Detailed information about food items.
-Request modal for available foods.
-7. Layouts
-Toggle between two-column and three-column layouts for available foods.
-8. Animations
-Smooth and professional animations using Framer Motion.
 
+nstall Dependencies
 
-Client-Side Tech Stack Icons
-Technology	Icon
-React	
-Firebase	
-Tailwind CSS	
-DaisyUI	
-Framer Motion	
-Axios	
-React Router	
-Formik	
-Yup	
-Server-Side Tech Stack Icons
-Technology	Icon
-Node.js	
-Express.js	
-MongoDB	
-JWT	
-Cors	
-Dotenv	
-Dev Tools and Frameworks
-Technology	Icon
-Vite	
-PostCSS	
-ESLint	
-DaisyUI	
-
-
-![React](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg)
-![Firebase](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg)
-![Tailwind CSS](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg)
-![Node.js](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg)
-![MongoDB](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg)
-
-
-
-🛠️ Installation & Setup
-Prerequisites
-Node.js
-npm or yarn
-MongoDB Database
-Firebase Project
-Steps to Run Locally
-Clone the Repositories
-
-bash
-Copy code
-git clone: [https://github.com/shahab-24/AL-MADINA-FOODS]
-git clone: [https://github.com/shahab-24/AL-MADINA-FOODS-server]
-Set Up the Client
-
+Client:
 bash
 Copy code
 cd al-madina-foods
 npm install
-Set Up the Server
-
+Server:
 bash
 Copy code
 cd al-madina-foods-server
 npm install
-Environment Variables Create .env files in both client and server directories with the following keys:
+Set Up Environment Variables
 
-Client:
+Client: Create a .env file with Firebase keys:
 env
 Copy code
 VITE_API_URL=<your-server-url>
@@ -110,13 +122,13 @@ VITE_FIREBASE_PROJECT_ID=<firebase-project-id>
 VITE_FIREBASE_STORAGE_BUCKET=<firebase-storage-bucket>
 VITE_FIREBASE_MESSAGING_SENDER_ID=<firebase-messaging-sender-id>
 VITE_FIREBASE_APP_ID=<firebase-app-id>
-Server:
+Server: Create a .env file with:
 env
 Copy code
 PORT=5000
 MONGO_URI=<your-mongo-uri>
 JWT_SECRET=<your-jwt-secret>
-Run the Applications
+Run Applications
 
 Start the server:
 bash
@@ -126,61 +138,10 @@ Start the client:
 bash
 Copy code
 npm run dev
-
-📂 Folder Structure
+📦 Deployment
 Client
-src/components: Reusable UI components.
-src/pages: Page components (e.g., Home, Login, Register).
-src/context: Context API for global state.
-src/hooks: Custom hooks (e.g., AxiosSecure).
-src/styles: Tailwind CSS configurations.
+Deployed on Netlify/Surge/Other (Replace with your deployment platform).
+Firebase keys are secured using environment variables.
 Server
-routes: API routes (e.g., Food CRUD, Authentication).
-middleware: JWT verification and error handling.
-models: MongoDB schemas.
-controllers: Logic for handling requests.
-
-
-📦 NPM Packages
-Client
-Core: react, react-dom, react-router-dom, axios.
-Styling: tailwindcss, daisyui, shadcn/ui.
-Forms: formik, react-hook-form, yup.
-Animations: framer-motion, aos.
-Utilities: localforage, react-toastify, sweetalert2.
-Server
-Core: express, cors, dotenv, mongodb.
-Authentication: jsonwebtoken, cookie-parser.
-🔗 Deployment
-Client
-Hosted on [Firebase].
-Firebase configuration secured using environment variables.
-Server
-Hosted on [Vercel].
-MongoDB URI secured using environment variables.
-
-
-⚙️ Features in Action
-Home Page
-Catchy banner slider with animations.
-Featured Foods section showcasing top items.
-Add Food
-A form with validations to add food items.
-Logged-in user details auto-filled.
-Available Foods
-Cards displaying available foods.
-Sorting and searching functionality.
-Food Details
-Detailed modal view for each food item.
-Request button with a pre-filled form.
-Private Routes
-Manage My Foods.
-My Food Requests.
-
-
-✨ Optional Enhancements
-Axios custom hook for secure requests.
-Shadcn/UI for modern components.
-
-📜 Contribution
-Feel free to fork and submit a pull request with your enhancements!
+Hosted on Render/Vercel/Other (Replace with your deployment platform).
+MongoDB URI and JWT secrets are stored in .env.
