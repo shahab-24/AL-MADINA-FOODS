@@ -1,6 +1,6 @@
 # 🍽️ AL-MADINA FOODS
 
-![AL-MADINA FOODS](https://your-banner-image-url.com)
+![AL-MADINA FOODS](https://i.ibb.co.com/Qvnx0QSm/screencapture-localhost-5173-2025-02-05-22-37-22.png)
 
 ## 🌍 Live Project
 [AL-MADINA FOODS](https://al-madina-foods.web.app)
