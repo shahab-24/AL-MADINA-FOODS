@@ -1,147 +1,98 @@
-# **🌟 AL-MADINA FOODS**
+# 🍽️ AL-MADINA FOODS
 
-A modern and responsive **Community Food Sharing and Surplus Reduction Platform** designed to help connect communities, reduce food wastage, and share surplus food efficiently. Built with cutting-edge technologies like **React**, **Firebase**, **Node.js**, and **MongoDB**, the platform ensures a seamless user experience, robust security, and responsive design.
+![AL-MADINA FOODS](https://your-banner-image-url.com)
 
----
+## 🌍 Live Project
+[AL-MADINA FOODS](https://al-madina-foods.web.app)
 
-## **🚀 Live Demo**
-
-👉 [Visit Live Site](#) <https://al-madina-foods.web.app/>
-
----
-
-## **🎯 Project Overview**
-
-The **Al-Madina Foods** platform enables users to:
-- **Add and manage food items** with expiration tracking.
-- **Request available foods** and manage their requests.
-- **View detailed food information** for transparency.
-- **Connect communities** to reduce food wastage and support each other.
+## 📂 Repository Links
+- **Client:** [GitHub Repo](https://github.com/shahab-24/AL-MADINA-FOODS)
+- **Server:** [GitHub Repo](https://github.com/shahab-24/AL-MADINA-FOODS-server)
 
 ---
 
-## **🌟 Key Features**
+## 📝 Project Overview
+AL-MADINA FOODS is a **community-driven food-sharing and surplus reduction platform** designed to connect individuals, reduce food wastage, and ensure efficient food distribution. Users can add, manage, and request food items while tracking expiration dates. The platform integrates authentication and CRUD functionalities to provide a seamless experience.
 
-### **Authentication**
-- Secure **email/password-based authentication** with Firebase.
-- Social login via **Google/GitHub**.
-- JWT-protected private routes for secure access.
+## 🛠️ Technologies Used
+<p>
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
+  <img src="https://img.shields.io/badge/ReactRouter-CA4245?style=for-the-badge&logo=react-router&logoColor=white" />
+  <img src="https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/DaisyUI-FF69B4?style=for-the-badge&logo=daisyui&logoColor=white" />
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" />
+  <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
+  <img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white" />
+</p>
 
-### **CRUD Functionality**
-- Add, update, delete, and manage food items.
-- Request available foods and track their statuses.
-
-### **Responsive Design**
-- Fully responsive UI for mobile, tablet, and desktop devices.
-- Professionally aligned UI with clean spacing and color contrast.
-
-### **Additional Features**
-- **Sorting and Searching**: Sort foods by expiration date or search by name.
-- **Layouts**: Toggle between two-column and three-column layouts for food display.
-- **Animations**: Smooth transitions using **Framer Motion**.
-- **Secure Configuration**: Firebase and MongoDB credentials are protected using environment variables.
-
----
-
-## **🛠️ Tech Stack**
-
-### **Client-Side**
-| Technology       | Icon                                                                                         |
-|-------------------|----------------------------------------------------------------------------------------------|
-| **React**         | ![React](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg)       |
-| **Firebase**      | ![Firebase](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg) |
-| **Tailwind CSS**  | ![Tailwind CSS](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg) |
-| **DaisyUI**       | ![DaisyUI](https://img.shields.io/badge/-DaisyUI-5A0FC8?logoColor=white&style=flat)         |
-| **Axios**         | ![Axios](https://img.shields.io/badge/-Axios-5A29E4?logoColor=white&style=flat)             |
-| **Framer Motion** | ![Framer Motion](https://img.shields.io/badge/-Framer%20Motion-0055FF?logo=framer&logoColor=white) |
-
-### **Server-Side**
-| Technology       | Icon                                                                                         |
-|-------------------|----------------------------------------------------------------------------------------------|
-| **Node.js**       | ![Node.js](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg)    |
-| **Express.js**    | ![Express.js](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg) |
-| **MongoDB**       | ![MongoDB](https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg) |
-| **JWT**           | ![JWT](https://img.shields.io/badge/-JWT-000000?logo=jsonwebtokens&logoColor=white)         |
+## ✨ Core Features
+- 🔐 **Authentication:** Secure email/password and social login with Firebase.
+- 📊 **CRUD Operations:** Add, update, delete, and request food items.
+- 🍛 **Food Management:** Expiration tracking and surplus food distribution.
+- 🔍 **Sorting & Searching:** Sort food by expiration date and search by name.
+- 🎨 **Animations:** Smooth transitions with Framer Motion.
+- 🔒 **Security:** JWT authentication for private routes.
+- 📱 **Responsive Design:** Optimized for mobile, tablet, and desktop.
 
 ---
 
-## **📂 Folder Structure**
-
-### **Client**
-- `src/components`: Reusable UI components (e.g., Navbar, Food Cards).
-- `src/pages`: Page components (e.g., Home, Login, Register).
-- `src/context`: Context API for global state management.
-- `src/styles`: Tailwind CSS configurations.
-- `src/hooks`: Custom hooks for HTTP requests (e.g., AxiosSecure).
-
-### **Server**
-- `routes`: API routes for food management and authentication.
-- `middleware`: Authentication and error-handling middleware.
-- `models`: MongoDB schemas for food and user data.
-- `controllers`: Logic for API request handling.
+## 📦 Dependencies
+<p>
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" />
+  <img src="https://img.shields.io/badge/Framer Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" />
+  <img src="https://img.shields.io/badge/React Hook Form-EC5990?style=for-the-badge&logo=react-hook-form&logoColor=white" />
+  <img src="https://img.shields.io/badge/React Toastify-FF4500?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/SweetAlert2-FF5733?style=for-the-badge&logo=sweetalert&logoColor=white" />
+</p>
 
 ---
 
-## **⚙️ Installation**
+## 🚀 Getting Started
 
-### **Prerequisites**
-- **Node.js**
-- **npm** or **yarn**
-- **MongoDB Database**
-- **Firebase Project**
+### 1️⃣ Clone the Repository
+```sh
+git clone https://github.com/shahab-24/AL-MADINA-FOODS.git
+cd AL-MADINA-FOODS
+```
 
-### **Steps**
-1. **Clone the Repositories**
-   ```bash
-   git clone <https://github.com/shahab-24/AL-MADINA-FOODS>
-   git clone <https://github.com/shahab-24/AL-MADINA-FOODS-server>
-
-
-
-nstall Dependencies
-
-Client:
-bash
-Copy code
-cd al-madina-foods
+### 2️⃣ Install Dependencies
+```sh
 npm install
-Server:
-bash
-Copy code
-cd al-madina-foods-server
-npm install
-Set Up Environment Variables
+```
 
-Client: Create a .env file with Firebase keys:
-env
-Copy code
-VITE_API_URL=<your-server-url>
-VITE_FIREBASE_API_KEY=<firebase-api-key>
-VITE_FIREBASE_AUTH_DOMAIN=<firebase-auth-domain>
-VITE_FIREBASE_PROJECT_ID=<firebase-project-id>
-VITE_FIREBASE_STORAGE_BUCKET=<firebase-storage-bucket>
-VITE_FIREBASE_MESSAGING_SENDER_ID=<firebase-messaging-sender-id>
-VITE_FIREBASE_APP_ID=<firebase-app-id>
-Server: Create a .env file with:
-env
-Copy code
-PORT=5000
-MONGO_URI=<your-mongo-uri>
-JWT_SECRET=<your-jwt-secret>
-Run Applications
+### 3️⃣ Setup Environment Variables
+Create a `.env` file in the root directory and add:
+```env
+VITE_API_KEY=your_api_key
+VITE_AUTH_DOMAIN=your_auth_domain
+VITE_PROJECT_ID=your_project_id
+VITE_STORAGE_BUCKET=your_storage_bucket
+VITE_MESSAGING_SENDER_ID=your_sender_id
+VITE_APP_ID=your_app_id
+```
 
-Start the server:
-bash
-Copy code
-npm start
-Start the client:
-bash
-Copy code
+### 4️⃣ Start the Development Server
+```sh
 npm run dev
-📦 Deployment
-Client
-Deployed on Netlify/Surge/Other (Replace with your deployment platform).
-Firebase keys are secured using environment variables.
-Server
-Hosted on Render/Vercel/Other (Replace with your deployment platform).
-MongoDB URI and JWT secrets are stored in .env.
+```
+
+### 5️⃣ Run the Backend Server
+Clone the backend repository and follow setup instructions from the [server repo](https://github.com/shahab-24/AL-MADINA-FOODS-server).
+
+---
+
+## 🖼️ Screenshot
+![AL-MADINA FOODS UI](https://your-screenshot-url.com)
+
+---
+
+## 📌 Additional Resources
+- [Live Project](https://al-madina-foods.web.app)
+- [Client Repository](https://github.com/shahab-24/AL-MADINA-FOODS)
+- [Server Repository](https://github.com/shahab-24/AL-MADINA-FOODS-server)
+
+---
+
+🔗 **Contributions & Feedback**
+Feel free to contribute or raise issues! 🚀
