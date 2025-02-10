@@ -9,7 +9,7 @@ const FoodSlider = () => {
 
   useEffect(() => {
     axios
-      .get("https://al-madina-foods-server.vercel.app/featured-foods")
+      .get("http://localhost:3000/featured-foods")
       .then((result) => {
         setFoods(result.data);
         setLoading(false);
@@ -49,8 +49,8 @@ const FoodSlider = () => {
         <motion.div
           className="flex w-screen h-screen transition-transform duration-500"
           initial={{ x: "100%" }} // Start from the right
-          animate={{ x: "0%" }}  // Slide into view
-          exit={{ x: "-100%" }}  // Exit to the left
+          animate={{ x: "0%" }} // Slide into view
+          exit={{ x: "-100%" }} // Exit to the left
         >
           {/* Slide Content */}
           {foods.length > 0 && (

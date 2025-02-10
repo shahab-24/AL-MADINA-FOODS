@@ -34,16 +34,14 @@ const Register = () => {
       .then((result) => {
         const foodUser = result.user;
         // const foodUser = { name, email, photo };
-        axios
-          .post("https://al-madina-foods-server.vercel.app/user", foodUser)
-          .then((data) => {
-            if (data.data.insertedId) {
-              toast.success("Registration successful");
-              setUser(data.data);
-              navigate("/");
-            }
-            form.reset();
-          });
+        axios.post("http://localhost:3000/user", foodUser).then((data) => {
+          if (data.data.insertedId) {
+            toast.success("Registration successful");
+            setUser(data.data);
+            navigate("/");
+          }
+          form.reset();
+        });
       })
       .catch((error) => {
         toast.error(error.message);

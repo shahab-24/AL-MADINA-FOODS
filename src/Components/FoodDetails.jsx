@@ -19,7 +19,7 @@ const FoodDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://al-madina-foods-server.vercel.app/food-details/${id}`, {
+      .get(`http://localhost:3000/food-details/${id}`, {
         withCredentials: true,
       })
       .then((result) => {
@@ -39,10 +39,9 @@ const FoodDetails = () => {
     };
 
     axios
-      .get(
-        `https://al-madina-foods-server.vercel.app/myRequest?userEmail=${loggedInUserEmail}`,
-        { withCredentials: true }
-      )
+      .get(`http://localhost:3000/myRequest?userEmail=${loggedInUserEmail}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         const userRequest = res.data;
         const alreadyRequestedFood = userRequest.some(
@@ -57,13 +56,9 @@ const FoodDetails = () => {
           });
         } else {
           axios
-            .post(
-              "https://al-madina-foods-server.vercel.app/request-food",
-              requestData,
-              {
-                withCredentials: true,
-              }
-            )
+            .post("http://localhost:3000/request-food", requestData, {
+              withCredentials: true,
+            })
             .then((result) => {
               setFood(result.data);
               Swal.fire({

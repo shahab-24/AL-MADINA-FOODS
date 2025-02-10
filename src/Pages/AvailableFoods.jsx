@@ -16,7 +16,7 @@ const AvailableFoods = () => {
     AOS.init({ duration: 1200 }); // Initialize AOS with a different duration
 
     axios
-      .get("https://al-madina-foods-server.vercel.app/available-foods")
+      .get("http://localhost:3000/available-foods")
       .then((result) => {
         setFoods(result.data);
         setFilteredFoods(result.data);
@@ -95,7 +95,7 @@ const AvailableFoods = () => {
                 <strong>Location:</strong> {food.pickupLocation}
               </p>
               <p className="text-gray-400 mb-1">
-                <strong>Expires:</strong> {" "}
+                <strong>Expires:</strong>{" "}
                 {new Date(food.expireDate).toLocaleString()}
               </p>
               <p className="text-gray-500 italic mb-3">

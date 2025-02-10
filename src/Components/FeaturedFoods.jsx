@@ -8,7 +8,7 @@ const FeaturedFoods = () => {
 
   useEffect(() => {
     axios
-      .get("https://al-madina-foods-server.vercel.app/featured-foods")
+      .get("http://localhost:3000/featured-foods")
       .then((result) => {
         setFeaturedFoods(result.data);
       })

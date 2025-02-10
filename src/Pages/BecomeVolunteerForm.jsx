@@ -1,32 +1,38 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import axios from 'axios';
-import Swal from 'sweetalert2'; // Import SweetAlert2
-import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import Swal from "sweetalert2"; // Import SweetAlert2
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 const BecomeVolunteerForm = () => {
-    const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const initialValues = {
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required('Name is required'),
-    email: Yup.string().email('Invalid email format').required('Email is required'),
-    phone: Yup.string().required('Phone number is required'),
-    message: Yup.string().required('Message is required'),
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
+    phone: Yup.string().required("Phone number is required"),
+    message: Yup.string().required("Message is required"),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await axiosSecure.post('https://al-madina-foods-server.vercel.app/volunteer-request', values,{withCredentials: true});
+      await axiosSecure.post(
+        "http://localhost:3000/volunteer-request",
+        values,
+        { withCredentials: true }
+      );
       // Show SweetAlert on success
       Swal.fire({
-        icon: 'success',
-        title: 'Your volunteer request has been submitted successfully!',
+        icon: "success",
+        title: "Your volunteer request has been submitted successfully!",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -34,8 +40,8 @@ const BecomeVolunteerForm = () => {
     } catch (error) {
       // Show SweetAlert on error
       Swal.fire({
-        icon: 'error',
-        title: 'There was an error submitting your request. Please try again.',
+        icon: "error",
+        title: "There was an error submitting your request. Please try again.",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -56,7 +62,10 @@ const BecomeVolunteerForm = () => {
           {({ isSubmitting }) => (
             <Form>
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2" htmlFor="name">
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="name"
+                >
                   Name
                 </label>
                 <Field
@@ -65,11 +74,18 @@ const BecomeVolunteerForm = () => {
                   name="name"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2" htmlFor="email">
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="email"
+                >
                   Email
                 </label>
                 <Field
@@ -78,11 +94,18 @@ const BecomeVolunteerForm = () => {
                   name="email"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2" htmlFor="phone">
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="phone"
+                >
                   Phone
                 </label>
                 <Field
@@ -91,11 +114,18 @@ const BecomeVolunteerForm = () => {
                   name="phone"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <ErrorMessage name="phone" component="div" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="phone"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
               <div className="mb-4">
-                <label className="block text-gray-700 font-medium mb-2" htmlFor="message">
+                <label
+                  className="block text-gray-700 font-medium mb-2"
+                  htmlFor="message"
+                >
                   Why do you want to volunteer?
                 </label>
                 <Field
@@ -105,7 +135,11 @@ const BecomeVolunteerForm = () => {
                   rows="4"
                   className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <ErrorMessage name="message" component="div" className="text-red-500 text-sm" />
+                <ErrorMessage
+                  name="message"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
               </div>
 
               <div className="text-center">
@@ -114,7 +148,7 @@ const BecomeVolunteerForm = () => {
                   className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit Request'}
+                  {isSubmitting ? "Submitting..." : "Submit Request"}
                 </button>
               </div>
             </Form>

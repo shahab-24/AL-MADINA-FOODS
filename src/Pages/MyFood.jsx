@@ -25,12 +25,9 @@ const MyFood = () => {
 
     setLoading(true);
     axios
-      .get(
-        `https://al-madina-foods-server.vercel.app/myFood?userEmail=${loggedInUserEmail}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`http://localhost:3000/myFood?userEmail=${loggedInUserEmail}`, {
+        withCredentials: true,
+      })
       .then((result) => {
         setMyAddedFood(result.data);
         setLoading(false);
@@ -53,12 +50,9 @@ const MyFood = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(
-            `https://al-madina-foods-server.vercel.app/myFood/${foodId}`,
-            {
-              withCredentials: true,
-            }
-          )
+          .delete(`http://localhost:3000/myFood/${foodId}`, {
+            withCredentials: true,
+          })
           .then(() => {
             Swal.fire(
               "Deleted!",
@@ -83,7 +77,7 @@ const MyFood = () => {
   const handleUpdate = (updatedFood) => {
     const { _id, ...rest } = updatedFood;
     axios
-      .patch(`https://al-madina-foods-server.vercel.app/myFood/${_id}`, rest, {
+      .patch(`http://localhost:3000/myFood/${_id}`, rest, {
         withCredentials: true,
       })
       .then(() => {

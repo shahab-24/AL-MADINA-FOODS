@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
         console.log("current user from authState", currentUser);
         const user = { email: currentUser.email };
         axios
-          .post("https://al-madina-foods-server.vercel.app/jwt", user, {
+          .post("http://localhost:3000/jwt", user, {
             withCredentials: true,
           })
           .then((result) => console.log("login token", result.data))
@@ -75,7 +75,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "https://al-madina-foods-server.vercel.app/logout",
+            "http://localhost:3000/logout",
             {},
             {
               withCredentials: true,

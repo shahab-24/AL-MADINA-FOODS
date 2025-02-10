@@ -9,9 +9,7 @@ const RecentlyAddedFoods = () => {
   useEffect(() => {
     const fetchRecentFoods = async () => {
       try {
-        const response = await axios.get(
-          "https://al-madina-foods-server.vercel.app/recent-foods"
-        );
+        const response = await axios.get("http://localhost:3000/recent-foods");
         setRecentFoods(response.data);
         setLoading(false); // Stop loading when data is fetched
       } catch (error) {

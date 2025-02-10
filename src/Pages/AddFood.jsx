@@ -20,7 +20,7 @@ const AddFood = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
     axios
-      .get("https://al-madina-foods-server.vercel.app/foods", {
+      .get("http://localhost:3000/foods", {
         withCredentials: true,
       })
       .then((res) => setFoods(res.data))
@@ -56,7 +56,7 @@ const AddFood = () => {
     }
 
     axios
-      .post("https://al-madina-foods-server.vercel.app/add-foods", newFood, {
+      .post("http://localhost:3000/add-foods", newFood, {
         withCredentials: true,
       })
       .then((res) => {
