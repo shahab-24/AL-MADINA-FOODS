@@ -1,0 +1,28 @@
+[
+        {
+          "foodName": "Fresh Home-Cooked Meal",
+          "foodImage": "https://i.ibb.co.com/qF4Xhznv/home-cooked.webp"
+        },
+        {
+          "foodName": "Organic Farm Vegetables",
+          "foodImage": "https://i.ibb.co.com/mVYLDfLx/organic.webp"
+        },
+        {
+          "foodName": "Delicious Street Tacos",
+          "foodImage": "https://i.ibb.co.com/RTtz4BWR/tacos.jpg"
+        },
+        {
+          "foodName": "Healthy Fruit Platter",
+          "foodImage": "https://i.ibb.co.com/rGKfd40B/healthy.jpg"
+        },
+        {
+          "foodName": "Traditional Asian Cuisine",
+          "foodImage": "https://i.ibb.co.com/1JKqVt04/traditional.jpg"
+        },
+        
+        {
+          "foodName": "Nutritious Salad Bowl",
+          "foodImage": "https://i.ibb.co.com/1fv0LCbk/nutritious.webp"
+        }
+      ]
+      
