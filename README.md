@@ -1,9 +1,9 @@
-# 🍽️ AL-MADINA FOODS
+# 🍽️ Foodshare Hub
 
-![AL-MADINA FOODS](https://i.ibb.co.com/Qvnx0QSm/screencapture-localhost-5173-2025-02-05-22-37-22.png)
+![FoodShare Hub](https://i.ibb.co.com/7t5n6z8k/screencapture-localhost-5173-2025-02-17-07-53-45.png)
 
 ## 🌍 Live Project
-[AL-MADINA FOODS](https://al-madina-foods.web.app)
+[ FOODShare Hub](https://al-madina-foods.web.app)
 
 ## 📂 Repository Links
 - **Client:** [GitHub Repo](https://github.com/shahab-24/AL-MADINA-FOODS)
@@ -12,7 +12,7 @@
 ---
 
 ## 📝 Project Overview
-AL-MADINA FOODS is a **community-driven food-sharing and surplus reduction platform** designed to connect individuals, reduce food wastage, and ensure efficient food distribution. Users can add, manage, and request food items while tracking expiration dates. The platform integrates authentication and CRUD functionalities to provide a seamless experience.
+FoodShare Hub is a **community-driven food-sharing and surplus reduction platform** designed to connect individuals, reduce food wastage, and ensure efficient food distribution. Users can add, manage, and request food items while tracking expiration dates. The platform integrates authentication and CRUD functionalities to provide a seamless experience.
 
 ## 🛠️ Technologies Used
 <p>
@@ -53,7 +53,7 @@ AL-MADINA FOODS is a **community-driven food-sharing and surplus reduction platf
 ### 1️⃣ Clone the Repository
 ```sh
 git clone https://github.com/shahab-24/AL-MADINA-FOODS.git
-cd AL-MADINA-FOODS
+cd FoodShare Hub
 ```
 
 ### 2️⃣ Install Dependencies
