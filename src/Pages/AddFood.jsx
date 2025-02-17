@@ -79,22 +79,22 @@ const AddFood = () => {
         backgroundBlendMode: "overlay",
       }}
     >
-      <div className="container mx-auto p-4 sm:p-6 md:p-8 bg-white bg-opacity-90 rounded-lg shadow-lg">
+      <div className="container mt-20 mx-auto p-2 sm:p-4 md:p-6 bg-white bg-opacity-90 rounded-lg shadow-lg">
         <h1
-          className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800"
+          className="text-3xl text-green-700 md:text-4xl font-bold text-center dark:text-gray-200 mb-6 mt-10"
           data-aos="fade-up"
         >
           Add Food
         </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4"
         >
           {/* Food Name */}
           <div data-aos="fade-right">
             <label
               htmlFor="foodName"
-              className="block text-lg font-semibold text-gray-700 mb-2"
+              className="block font-semibold text-sm lg:text-lg text-green-600 mb-2"
             >
               Food Name
             </label>
@@ -102,7 +102,8 @@ const AddFood = () => {
               type="text"
               id="foodName"
               {...register("foodName", { required: "Food Name is required" })}
-              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+
             />
             {errors.foodName && (
               <p className="text-red-500 text-sm mt-1">
@@ -115,7 +116,7 @@ const AddFood = () => {
           <div data-aos="fade-left">
             <label
               htmlFor="foodImage"
-              className="block text-lg font-semibold text-gray-700 mb-2"
+              className="block font-semibold text-sm lg:text-lg text-green-600 mb-2"
             >
               Food Image URL
             </label>
@@ -123,7 +124,8 @@ const AddFood = () => {
               type="text"
               id="foodImage"
               {...register("foodImage", { required: "Food Image is required" })}
-              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+
             />
             {errors.foodImage && (
               <p className="text-red-500 text-sm mt-1">
@@ -136,7 +138,7 @@ const AddFood = () => {
           <div data-aos="fade-right">
             <label
               htmlFor="foodQuantity"
-              className="block text-lg font-semibold text-gray-700 mb-2"
+              className="block font-semibold text-sm lg:text-lg text-green-600 mb-2"
             >
               Food Quantity
             </label>
@@ -146,7 +148,8 @@ const AddFood = () => {
               {...register("foodQuantity", {
                 required: "Food Quantity is required",
               })}
-              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+
             />
             {errors.foodQuantity && (
               <p className="text-red-500 text-sm mt-1">
@@ -159,7 +162,7 @@ const AddFood = () => {
           <div data-aos="fade-left">
             <label
               htmlFor="pickupLocation"
-              className="block text-lg font-semibold text-gray-700 mb-2"
+              className="block font-semibold text-sm lg:text-lg text-green-600 mb-2"
             >
               Pickup Location
             </label>
@@ -169,7 +172,8 @@ const AddFood = () => {
               {...register("pickupLocation", {
                 required: "Pickup Location is required",
               })}
-              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+
             />
             {errors.pickupLocation && (
               <p className="text-red-500 text-sm mt-1">
@@ -182,7 +186,7 @@ const AddFood = () => {
           <div data-aos="fade-right">
             <label
               htmlFor="expireDate"
-              className="block text-lg font-semibold text-gray-700 mb-2"
+              className="block font-semibold text-sm lg:text-lg text-green-600 mb-2"
             >
               Expire Date
             </label>
@@ -192,7 +196,8 @@ const AddFood = () => {
               {...register("expireDate", {
                 required: "Expire Date is required",
               })}
-              className="w-full h-12 px-4 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+
             />
             {errors.expireDate && (
               <p className="text-red-500 text-sm mt-1">
@@ -205,7 +210,7 @@ const AddFood = () => {
           <div data-aos="fade-left">
             <label
               htmlFor="additionalNotes"
-              className="block text-lg font-semibold text-gray-700 mb-2"
+              className="block font-semibold text-sm lg:text-lg text-green-600 mb-2"
             >
               Additional Notes
             </label>
@@ -213,7 +218,8 @@ const AddFood = () => {
               id="additionalNotes"
               rows="3"
               {...register("additionalNotes")}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+
             ></textarea>
           </div>
 
@@ -221,7 +227,7 @@ const AddFood = () => {
           <div className="col-span-1 sm:col-span-2" data-aos="fade-up">
             <button
               type="submit"
-              className="w-full h-12 bg-blue-600 text-white font-semibold rounded-md shadow-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition duration-300"
+              className="w-full h-12 px-6 py-3 text-white rounded-lg text-lg font-semibold shadow-md transition duration-300 transform bg-green-600 hover:bg-green-700 hover:shadow-lg "
             >
               Add Food
             </button>
@@ -229,7 +235,119 @@ const AddFood = () => {
         </form>
       </div>
     </div>
+
+
+
   );
 };
 
 export default AddFood;
+
+{/* <div className="min-h-screen flex items-center justify-center bg-cover bg-center"
+  style={{
+    backgroundImage: "url('https://via.placeholder.com/1500x1000')",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    backgroundBlendMode: "overlay",
+  }}
+>
+  <div className="container mx-auto p-4 sm:p-6 md:p-8 bg-white dark:bg-gray-900 bg-opacity-90 rounded-lg shadow-lg">
+    <h1
+      className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white"
+      data-aos="fade-up"
+    >
+      Add Food
+    </h1>
+    <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+      <div data-aos="fade-right">
+        <label htmlFor="foodName" className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Food Name
+        </label>
+        <input
+          type="text"
+          id="foodName"
+          {...register("foodName", { required: "Food Name is required" })}
+          className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.foodName && <p className="text-red-500 text-sm mt-1">{errors.foodName.message}</p>}
+      </div>
+
+
+      <div data-aos="fade-left">
+        <label htmlFor="foodImage" className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Food Image URL
+        </label>
+        <input
+          type="text"
+          id="foodImage"
+          {...register("foodImage", { required: "Food Image is required" })}
+          className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.foodImage && <p className="text-red-500 text-sm mt-1">{errors.foodImage.message}</p>}
+      </div>
+
+      <div data-aos="fade-right">
+        <label htmlFor="foodQuantity" className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Food Quantity
+        </label>
+        <input
+          type="number"
+          id="foodQuantity"
+          {...register("foodQuantity", { required: "Food Quantity is required" })}
+          className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.foodQuantity && <p className="text-red-500 text-sm mt-1">{errors.foodQuantity.message}</p>}
+      </div>
+
+      <div data-aos="fade-left">
+        <label htmlFor="pickupLocation" className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Pickup Location
+        </label>
+        <input
+          type="text"
+          id="pickupLocation"
+          {...register("pickupLocation", { required: "Pickup Location is required" })}
+          className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.pickupLocation && <p className="text-red-500 text-sm mt-1">{errors.pickupLocation.message}</p>}
+      </div>
+
+    
+      <div data-aos="fade-right">
+        <label htmlFor="expireDate" className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Expire Date
+        </label>
+        <input
+          type="date"
+          id="expireDate"
+          {...register("expireDate", { required: "Expire Date is required" })}
+          className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        />
+        {errors.expireDate && <p className="text-red-500 text-sm mt-1">{errors.expireDate.message}</p>}
+      </div>
+
+   
+      <div data-aos="fade-left">
+        <label htmlFor="additionalNotes" className="block text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          Additional Notes
+        </label>
+        <textarea
+          id="additionalNotes"
+          rows="3"
+          {...register("additionalNotes")}
+          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        ></textarea>
+      </div>
+
+      <div className="col-span-1 sm:col-span-2" data-aos="fade-up">
+        <button
+          type="submit"
+          className="w-full h-12 px-6 py-3 text-white bg-green-600 hover:bg-green-700 rounded-lg text-lg font-semibold shadow-md transition duration-300 transform hover:shadow-lg"
+        >
+          Add Food
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div> */}

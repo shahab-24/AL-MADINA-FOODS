@@ -117,7 +117,7 @@ const FoodDetails = () => {
               </p>
               <button
                 onClick={() => setShowModal(true)} // Show modal
-                className="bg-cyan-600 text-white py-2 px-6 rounded-lg shadow-md hover:bg-cyan-700 transition"
+                className="px-6 py-3 text-white rounded-lg text-lg font-semibold shadow-md transition duration-300 transform bg-green-600 hover:bg-green-700 hover:shadow-lg"
               >
                 Request Food
               </button>
@@ -162,7 +162,7 @@ const FoodDetails = () => {
                 </button>
                 <button
                   onClick={() => handleRequestFood(food._id)} // Submit request
-                  className="bg-cyan-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-cyan-700 transition"
+                  className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-800 transition"
                 >
                   Request
                 </button>

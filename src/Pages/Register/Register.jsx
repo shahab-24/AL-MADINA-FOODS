@@ -5,14 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Lottie from "lottie-react";
-import animationData from "../../assets/register-animation.json"; // Ensure the JSON file is added
+import animationData from "../../assets/register-animation.json";
 
 const Register = () => {
   const { createUser, err, handleGoogleLogin, setUser } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -30,63 +30,43 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        const foodUser = result.user;
-        // const foodUser = { name, email, photo };
-        axios.post("http://localhost:3000/user", foodUser).then((data) => {
-          if (data.data.insertedId) {
-            toast.success("Registration successful");
-            setUser(data.data);
-            navigate("/");
-          }
-          form.reset();
-        });
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+    try {
+      const result = await createUser(email, password);
+      const newUser = result.user;
+      const userInfo = { name, email, photo };
+
+      const response = await axios.post("http://localhost:3000/user", userInfo);
+      if (response.data.insertedId) {
+        toast.success("Registration successful!");
+        setUser(userInfo);
+        navigate("/");
+      }
+      form.reset();
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-cover bg-center py-10 px-4 sm:px-10 relative mt-10"
-      style={{
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0')",
-        backgroundBlendMode: "overlay",
-        backgroundColor: "rgba(0,0,0,0.6)",
-      }}
-    >
-      {/* Background Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
-
-      {/* Content Wrapper */}
-      <div className="relative z-20 p-4 flex flex-col lg:flex-row items-center lg:items-center justify-center gap-10 lg:gap-16 max-w-6xl w-full">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 py-10 px-4 sm:px-10">
+      {/* Wrapper */}
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 max-w-6xl w-full bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8 sm:p-12">
+        
         {/* Animation Section */}
-        <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-          <Lottie
-            animationData={animationData}
-            loop={true}
-            className="w-full max-w-sm lg:max-w-md"
-          />
+        <div className="w-full lg:w-1/2">
+          <Lottie animationData={animationData} loop className="w-full max-w-sm lg:max-w-md mx-auto" />
         </div>
 
         {/* Form Section */}
-        <div
-          className="w-full  lg:w-1/2 shadow-xl p-8 sm:p-8 bg-white rounded-xl flex flex-col justify-center min-h-screen lg:h-[70vh] max-h-[700px]"
-          style={{ backdropFilter: "blur(15px)" }}
-        >
-          <h2 className="font-bold text-center text-purple-700 text-3xl mt-6">
+        <div className="w-full lg:w-1/2 space-y-6">
+          <h2 className="text-center text-3xl font-bold text-gray-900 dark:text-gray-100">
             Create Your Account
           </h2>
 
-          <form onSubmit={handleRegister} className="space-y-4">
+          <form onSubmit={handleRegister} className="space-y-5">
             {/* Name Input */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-semibold">Name</span>
-              </label>
+            <div>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">Name</label>
               <input
                 type="text"
                 name="name"
@@ -97,10 +77,8 @@ const Register = () => {
             </div>
 
             {/* Photo URL Input */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-semibold">Photo URL</span>
-              </label>
+            <div>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">Photo URL</label>
               <input
                 type="text"
                 name="photo"
@@ -111,10 +89,8 @@ const Register = () => {
             </div>
 
             {/* Email Input */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text font-semibold">Email</span>
-              </label>
+            <div>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">Email</label>
               <input
                 type="email"
                 name="email"
@@ -125,21 +101,19 @@ const Register = () => {
             </div>
 
             {/* Password Input */}
-            <div className="form-control relative">
-              <label className="label">
-                <span className="label-text font-semibold">Password</span>
-              </label>
+            <div className="relative">
+              <label className="block font-medium text-gray-700 dark:text-gray-300">Password</label>
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Your Password"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full pr-10"
                 required
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-10 text-gray-600"
+                className="absolute right-4 top-10 text-gray-600 dark:text-gray-400"
               >
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
@@ -148,32 +122,34 @@ const Register = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="btn btn-primary w-full text-white font-semibold py-2 rounded-lg"
+              className="w-full py-3 text-lg md:text-xl font-bold text-white bg-gradient-to-r from-green-500 to-yellow-500 hover:from-blue-500 hover:to-green-500 transition-all rounded-md shadow-md hover:shadow-lg"
             >
               Sign Up
             </button>
-            {err && <p className="text-red-600 mt-2">{err}</p>}
+
+            {err && <p className="text-red-600 mt-2 text-center">{err}</p>}
 
             {/* Already have an account */}
-            <p className="mt-2 text-center">
+            <p className="text-center text-gray-700 dark:text-gray-300">
               Already have an account?{" "}
-              <Link to="/login" className="text-purple-700 ">
+              <Link to="/login" className="text-blue-500 hover:underline">
                 Login
               </Link>
             </p>
 
             {/* Google Login Button */}
-            <div className="my-4 pb-8 flex flex-col items-center gap-4">
+            <div className="flex flex-col items-center">
               <button
+                type="button"
                 onClick={handleGoogleLogin}
-                className="btn btn-outline w-full flex items-center gap-2"
+                className="btn border-green-600 w-full text-sm md:text-2xl font-extrabold bg-gradient-to-r from-yellow-400 via-green-400 to-teal-400 bg-clip-text text-transparent hover:border-green-800 tracking-wider hover:text-green-600"
               >
-                <img
+                {/* <img
                   src="https://img.icons8.com/color/48/google-logo.png"
                   alt="Google"
-                  className="w-6"
-                />
-                Login with Google
+                  className="w-4"
+                /> */}
+                Sign in with Google
               </button>
             </div>
           </form>

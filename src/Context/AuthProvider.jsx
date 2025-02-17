@@ -93,15 +93,16 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const logOutUser = () => {
-    setLoading(true);
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        // navigate('/')
-      })
-      .catch((error) => {
-        setErr(error.message);
-      });
+        return signOut(auth)
+//     setLoading(true);
+//     signOut(auth)
+//       .then(() => {
+//         setUser(null);
+//         // navigate('/')
+//       })
+//       .catch((error) => {
+//         setErr(error.message);
+//       });
   };
 
   const authInfo = {
@@ -114,6 +115,7 @@ const AuthProvider = ({ children }) => {
     err,
     setErr,
     handleGoogleLogin,
+    setLoading
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
