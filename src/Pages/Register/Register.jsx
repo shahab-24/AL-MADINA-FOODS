@@ -35,7 +35,10 @@ const Register = () => {
       const newUser = result.user;
       const userInfo = { name, email, photo };
 
-      const response = await axios.post("http://localhost:3000/user", userInfo);
+      const response = await axios.post(
+        "https://al-madina-foods-server.vercel.app/user",
+        userInfo
+      );
       if (response.data.insertedId) {
         toast.success("Registration successful!");
         setUser(userInfo);
@@ -51,10 +54,13 @@ const Register = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 py-10 px-4 sm:px-10">
       {/* Wrapper */}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-16 max-w-6xl w-full bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8 sm:p-12">
-        
         {/* Animation Section */}
         <div className="w-full lg:w-1/2">
-          <Lottie animationData={animationData} loop className="w-full max-w-sm lg:max-w-md mx-auto" />
+          <Lottie
+            animationData={animationData}
+            loop
+            className="w-full max-w-sm lg:max-w-md mx-auto"
+          />
         </div>
 
         {/* Form Section */}
@@ -66,7 +72,9 @@ const Register = () => {
           <form onSubmit={handleRegister} className="space-y-5">
             {/* Name Input */}
             <div>
-              <label className="block font-medium text-gray-700 dark:text-gray-300">Name</label>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">
+                Name
+              </label>
               <input
                 type="text"
                 name="name"
@@ -78,7 +86,9 @@ const Register = () => {
 
             {/* Photo URL Input */}
             <div>
-              <label className="block font-medium text-gray-700 dark:text-gray-300">Photo URL</label>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">
+                Photo URL
+              </label>
               <input
                 type="text"
                 name="photo"
@@ -90,7 +100,9 @@ const Register = () => {
 
             {/* Email Input */}
             <div>
-              <label className="block font-medium text-gray-700 dark:text-gray-300">Email</label>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -102,7 +114,9 @@ const Register = () => {
 
             {/* Password Input */}
             <div className="relative">
-              <label className="block font-medium text-gray-700 dark:text-gray-300">Password</label>
+              <label className="block font-medium text-gray-700 dark:text-gray-300">
+                Password
+              </label>
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"

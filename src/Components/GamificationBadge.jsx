@@ -15,7 +15,7 @@ const GamificationBadge = () => {
         // Fetch logged-in user's stats
         if (user?.email) {
           const response = await axios.get(
-            "http://localhost:3000/donor-stats",
+            "https://al-madina-foods-server.vercel.app/donor-stats",
             { params: { email: user?.email } }
           );
           setDonorStats(response.data);
@@ -23,7 +23,7 @@ const GamificationBadge = () => {
 
         // Fetch all donors' stats
         const allDonorsResponse = await axios.get(
-          "http://localhost:3000/donor-stats/all"
+          "https://al-madina-foods-server.vercel.app/donor-stats/all"
         );
         setAllDonors(allDonorsResponse.data);
         setLoading(false);
@@ -143,7 +143,9 @@ const GamificationBadge = () => {
                         <td className="px-4 py-3">{index + 1}</td>
                         <td className="px-4 py-3">{donor._id}</td>
                         <td className="px-4 py-3">{donor.totalDonations}</td>
-                        <td className="px-4 py-3 text-lg">{getBadge(donor.totalDonations)}</td>
+                        <td className="px-4 py-3 text-lg">
+                          {getBadge(donor.totalDonations)}
+                        </td>
                       </motion.tr>
                     ))}
               </tbody>

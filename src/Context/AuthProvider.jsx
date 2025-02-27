@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
         console.log("current user from authState", currentUser);
         const user = { email: currentUser.email };
         axios
-          .post("http://localhost:3000/jwt", user, {
+          .post("https://al-madina-foods-server.vercel.app/jwt", user, {
             withCredentials: true,
           })
           .then((result) => console.log("login token", result.data))
@@ -75,7 +75,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "http://localhost:3000/logout",
+            "https://al-madina-foods-server.vercel.app/logout",
             {},
             {
               withCredentials: true,
@@ -93,16 +93,16 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const logOutUser = () => {
-        return signOut(auth)
-//     setLoading(true);
-//     signOut(auth)
-//       .then(() => {
-//         setUser(null);
-//         // navigate('/')
-//       })
-//       .catch((error) => {
-//         setErr(error.message);
-//       });
+    return signOut(auth);
+    //     setLoading(true);
+    //     signOut(auth)
+    //       .then(() => {
+    //         setUser(null);
+    //         // navigate('/')
+    //       })
+    //       .catch((error) => {
+    //         setErr(error.message);
+    //       });
   };
 
   const authInfo = {
@@ -115,7 +115,7 @@ const AuthProvider = ({ children }) => {
     err,
     setErr,
     handleGoogleLogin,
-    setLoading
+    setLoading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -9,7 +9,7 @@ const FeaturedFoods = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/featured-foods")
+      .get("https://al-madina-foods-server.vercel.app/featured-foods")
       .then((result) => {
         setFeaturedFoods(result.data);
       })
@@ -38,7 +38,10 @@ const FeaturedFoods = () => {
         {loading
           ? // Show skeleton loader while loading
             [...Array(8)].map((_, index) => (
-              <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5">
+              <div
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5"
+              >
                 <div className="skeleton h-48 w-full rounded-md mb-4"></div>
                 <div className="skeleton h-6 w-3/4 mb-2"></div>
                 <div className="skeleton h-4 w-1/2 mb-2"></div>
@@ -65,16 +68,28 @@ const FeaturedFoods = () => {
                   {food.foodName || "N/A"}
                 </h3>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">
-                  Quantity: <span className="font-medium">{food.foodQuantity || "N/A"}</span>
+                  Quantity:{" "}
+                  <span className="font-medium">
+                    {food.foodQuantity || "N/A"}
+                  </span>
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">
-                  Location: <span className="font-medium">{food.pickupLocation || "N/A"}</span>
+                  Location:{" "}
+                  <span className="font-medium">
+                    {food.pickupLocation || "N/A"}
+                  </span>
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-2">
-                  Expires: <span className="font-medium">{new Date(food.expireDate).toLocaleDateString() || "N/A"}</span>
+                  Expires:{" "}
+                  <span className="font-medium">
+                    {new Date(food.expireDate).toLocaleDateString() || "N/A"}
+                  </span>
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  Donator: <span className="font-medium">{food.foodUser?.donatorEmail || "N/A"}</span>
+                  Donator:{" "}
+                  <span className="font-medium">
+                    {food.foodUser?.donatorEmail || "N/A"}
+                  </span>
                 </p>
               </motion.div>
             ))}
@@ -89,7 +104,7 @@ const FeaturedFoods = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
-             All Available Foods ➡️
+            All Available Foods ➡️
           </motion.button>
         </Link>
       </motion.div>

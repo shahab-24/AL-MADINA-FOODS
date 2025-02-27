@@ -15,14 +15,20 @@ const BecomeVolunteerForm = () => {
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required"),
-    email: Yup.string().email("Invalid email format").required("Email is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email is required"),
     phone: Yup.string().required("Phone number is required"),
     message: Yup.string().required("Message is required"),
   });
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      await axiosSecure.post("http://localhost:3000/volunteer-request", values, { withCredentials: true });
+      await axiosSecure.post(
+        "https://al-madina-foods-server.vercel.app/volunteer-request",
+        values,
+        { withCredentials: true }
+      );
       Swal.fire({
         icon: "success",
         title: "Thank you for volunteering! 🎉",
@@ -46,22 +52,64 @@ const BecomeVolunteerForm = () => {
         <h2 className="text-xl lg:text-2xl font-bold text-center text-gray-900 mb-6">
           🙌 Become a Volunteer
         </h2>
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
           {({ isSubmitting }) => (
             <Form className="space-y-4">
-              <Field name="name" placeholder="Your Name" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500" />
-              <ErrorMessage name="name" component="div" className="text-red-500 text-sm" />
+              <Field
+                name="name"
+                placeholder="Your Name"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="text-red-500 text-sm"
+              />
 
-              <Field name="email" type="email" placeholder="Your Email" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500" />
-              <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+              <Field
+                name="email"
+                type="email"
+                placeholder="Your Email"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-red-500 text-sm"
+              />
 
-              <Field name="phone" placeholder="Your Phone" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500" />
-              <ErrorMessage name="phone" component="div" className="text-red-500 text-sm" />
+              <Field
+                name="phone"
+                placeholder="Your Phone"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <ErrorMessage
+                name="phone"
+                component="div"
+                className="text-red-500 text-sm"
+              />
 
-              <Field as="textarea" name="message" rows="4" placeholder="Why do you want to volunteer?" className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500" />
-              <ErrorMessage name="message" component="div" className="text-red-500 text-sm" />
+              <Field
+                as="textarea"
+                name="message"
+                rows="4"
+                placeholder="Why do you want to volunteer?"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <ErrorMessage
+                name="message"
+                component="div"
+                className="text-red-500 text-sm"
+              />
 
-              <button type="submit" className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300">
+              <button
+                type="submit"
+                className="w-full py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300"
+              >
                 {isSubmitting ? "Submitting..." : "Submit Request"}
               </button>
             </Form>

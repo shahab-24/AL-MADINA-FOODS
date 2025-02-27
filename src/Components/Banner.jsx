@@ -14,7 +14,7 @@ const Banner = () => {
       .catch(() => []);
 
     const fetchMongoData = axios
-      .get("http://localhost:3000/featured-foods")
+      .get("https://al-madina-foods-server.vercel.app/featured-foods")
       .then((res) => res.data)
       .catch(() => []);
 
@@ -60,7 +60,10 @@ const Banner = () => {
   }, [foods, isVisible]);
 
   return (
-    <div id="banner" className="relative w-full h-[80vh] md:h-screen bg-gray-900 z-0 overflow-hidden">
+    <div
+      id="banner"
+      className="relative w-full h-[80vh] md:h-screen bg-gray-900 z-0 overflow-hidden"
+    >
       {loading ? (
         <div className="w-full h-full flex items-center justify-center bg-gray-300 animate-pulse">
           <div className="h-12 w-32 bg-gray-400 rounded-lg"></div>
@@ -103,9 +106,16 @@ const Banner = () => {
         <>
           <button
             className="absolute top-1/2 left-6 transform -translate-y-1/2 text-white p-3 bg-gray-800/60 hover:bg-gray-700/80 rounded-full transition duration-300"
-            onClick={() => setCurrentIndex((prev) => (prev - 1 + foods.length) % foods.length)}
+            onClick={() =>
+              setCurrentIndex(
+                (prev) => (prev - 1 + foods.length) % foods.length
+              )
+            }
           >
-            <motion.span whileHover={{ scale: 1.2 }} className="text-2xl font-bold">
+            <motion.span
+              whileHover={{ scale: 1.2 }}
+              className="text-2xl font-bold"
+            >
               &lt;
             </motion.span>
           </button>
@@ -113,7 +123,10 @@ const Banner = () => {
             className="absolute top-1/2 right-6 transform -translate-y-1/2 text-white p-3 bg-gray-800/60 hover:bg-gray-700/80 rounded-full transition duration-300"
             onClick={() => setCurrentIndex((prev) => (prev + 1) % foods.length)}
           >
-            <motion.span whileHover={{ scale: 1.2 }} className="text-2xl font-bold">
+            <motion.span
+              whileHover={{ scale: 1.2 }}
+              className="text-2xl font-bold"
+            >
               &gt;
             </motion.span>
           </button>
@@ -127,7 +140,9 @@ const Banner = () => {
             <div
               key={index}
               className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                index === currentIndex ? "bg-green-400 scale-125" : "bg-gray-500"
+                index === currentIndex
+                  ? "bg-green-400 scale-125"
+                  : "bg-gray-500"
               }`}
             ></div>
           ))}

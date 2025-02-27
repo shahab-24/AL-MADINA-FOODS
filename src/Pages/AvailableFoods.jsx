@@ -14,7 +14,7 @@ const AvailableFoods = () => {
   const [isThreeColumn, setIsThreeColumn] = useState(true);
   const [locationFilter, setLocationFilter] = useState("");
   const [expireFilter, setExpireFilter] = useState("");
-//   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  //   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
   const { user } = useAuth();
 
@@ -22,7 +22,7 @@ const AvailableFoods = () => {
     AOS.init({ duration: 1200 });
 
     axios
-      .get("http://localhost:3000/available-foods")
+      .get("https://al-madina-foods-server.vercel.app/available-foods")
       .then((result) => {
         // Sort by expiration date (soonest first)
         const sortedFoods = result.data.sort(
@@ -57,21 +57,23 @@ const AvailableFoods = () => {
   }, [searchText, locationFilter, expireFilter, foods]);
 
   // Theme Toggle Function
-//   const toggleTheme = () => {
-//     const newTheme = theme === "dark" ? "light" : "dark";
-//     setTheme(newTheme);
-//     localStorage.setItem("theme", newTheme);
-//   };
+  //   const toggleTheme = () => {
+  //     const newTheme = theme === "dark" ? "light" : "dark";
+  //     setTheme(newTheme);
+  //     localStorage.setItem("theme", newTheme);
+  //   };
 
   return (
     <div
-//       className={`min-h-screen p-6 transition-all ${
-//         theme === "dark" ? "bg-gray-950 text-gray-200" : "bg-gray-100 text-gray-900"
-//       }`}
+    //       className={`min-h-screen p-6 transition-all ${
+    //         theme === "dark" ? "bg-gray-950 text-gray-200" : "bg-gray-100 text-gray-900"
+    //       }`}
     >
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-4xl font-bold text-center flex-1 mt-20 text-green-600 ">Available Foods</h1>
+        <h1 className="text-4xl font-bold text-center flex-1 mt-20 text-green-600 ">
+          Available Foods
+        </h1>
 
         {/* Dark/Light Mode Toggle */}
         {/* <button

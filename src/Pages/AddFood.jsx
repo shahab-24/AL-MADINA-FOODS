@@ -20,7 +20,7 @@ const AddFood = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
     axios
-      .get("http://localhost:3000/foods", {
+      .get("https://al-madina-foods-server.vercel.app/foods", {
         withCredentials: true,
       })
       .then((res) => setFoods(res.data))
@@ -56,7 +56,7 @@ const AddFood = () => {
     }
 
     axios
-      .post("http://localhost:3000/add-foods", newFood, {
+      .post("https://al-madina-foods-server.vercel.app/add-foods", newFood, {
         withCredentials: true,
       })
       .then((res) => {
@@ -103,7 +103,6 @@ const AddFood = () => {
               id="foodName"
               {...register("foodName", { required: "Food Name is required" })}
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-
             />
             {errors.foodName && (
               <p className="text-red-500 text-sm mt-1">
@@ -125,7 +124,6 @@ const AddFood = () => {
               id="foodImage"
               {...register("foodImage", { required: "Food Image is required" })}
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-
             />
             {errors.foodImage && (
               <p className="text-red-500 text-sm mt-1">
@@ -149,7 +147,6 @@ const AddFood = () => {
                 required: "Food Quantity is required",
               })}
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-
             />
             {errors.foodQuantity && (
               <p className="text-red-500 text-sm mt-1">
@@ -173,7 +170,6 @@ const AddFood = () => {
                 required: "Pickup Location is required",
               })}
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-
             />
             {errors.pickupLocation && (
               <p className="text-red-500 text-sm mt-1">
@@ -197,7 +193,6 @@ const AddFood = () => {
                 required: "Expire Date is required",
               })}
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-
             />
             {errors.expireDate && (
               <p className="text-red-500 text-sm mt-1">
@@ -219,7 +214,6 @@ const AddFood = () => {
               rows="3"
               {...register("additionalNotes")}
               className="w-full h-12 px-4 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-
             ></textarea>
           </div>
 
@@ -235,15 +229,13 @@ const AddFood = () => {
         </form>
       </div>
     </div>
-
-
-
   );
 };
 
 export default AddFood;
 
-{/* <div className="min-h-screen flex items-center justify-center bg-cover bg-center"
+{
+  /* <div className="min-h-screen flex items-center justify-center bg-cover bg-center"
   style={{
     backgroundImage: "url('https://via.placeholder.com/1500x1000')",
     backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -350,4 +342,5 @@ export default AddFood;
 
     </form>
   </div>
-</div> */}
+</div> */
+}

@@ -83,7 +83,7 @@ Clone the backend repository and follow setup instructions from the [server repo
 ---
 
 ## 🖼️ Screenshot
-![AL-MADINA FOODS UI](https://your-screenshot-url.com)
+![FoodShare Hub UI](https://i.ibb.co.com/7t5n6z8k/screencapture-localhost-5173-2025-02-17-07-53-45.png)
 
 ---
 
