@@ -28,7 +28,7 @@ const MyRequest = () => {
   }, [loggedInUserEmail, axiosSecure]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 pt-10 p-6">
       {/* 🔹 Headline Fix */}
       <h3
         className="text-3xl text-green-700 md:text-4xl font-bold text-center dark:text-gray-200 mb-6 mt-16"

@@ -114,7 +114,7 @@ const MyFood = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-100 via-green-50 to-green-200 p-6">
+    <div className="min-h-screen pt-10 bg-gradient-to-br from-green-100 via-green-50 to-green-200 p-6">
       <h2
         className="text-3xl text-green-700 md:text-4xl font-bold text-center dark:text-gray-200 mb-6 mt-20"
         data-aos="fade-down"
@@ -212,7 +212,7 @@ const MyFood = () => {
               closingModal ? "animate-fadeOut" : "animate-fadeIn"
             }`}
           >
-            <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-200">
+            <h3 className="text-2xl font-bold mb-4 text-green-700 dark:text-gray-200">
               Edit Food
             </h3>
             <form
@@ -222,7 +222,7 @@ const MyFood = () => {
               }}
             >
               <div className="mb-4">
-                <label className="block font-medium mb-1 text-gray-700 dark:text-gray-300">
+                <label className="block font-medium mb-1 text-gray-700 dark:text-green-400">
                   Food Name
                 </label>
                 <input
@@ -234,12 +234,12 @@ const MyFood = () => {
                       foodName: e.target.value,
                     })
                   }
-                  className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+                  className="w-full p-2 border rounded  bg-gray-100 text-gray-800 dark:bg-gray-700  dark:text-white dark:placeholder-text-gray-400"
                 />
               </div>
 
               <div className="mb-4">
-                <label className="block font-medium mb-1 text-gray-700 dark:text-gray-300">
+                <label className="block font-medium mb-1 text-gray-700 dark:text-green-400">
                   Quantity
                 </label>
                 <input
@@ -251,12 +251,12 @@ const MyFood = () => {
                       foodQuantity: e.target.value,
                     })
                   }
-                  className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+                  className="w-full p-2 border rounded  bg-gray-100 text-gray-800 dark:bg-gray-700  dark:text-white dark:placeholder-text-gray-400"
                 />
               </div>
 
               <div className="mb-4">
-                <label className="block font-medium mb-1 text-gray-700 dark:text-gray-300">
+                <label className="block font-medium mb-1 text-gray-700 dark:text-green-400">
                   Pickup Location
                 </label>
                 <input
@@ -268,7 +268,7 @@ const MyFood = () => {
                       pickupLocation: e.target.value,
                     })
                   }
-                  className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-200"
+                  className="w-full p-2 border rounded bg-gray-100 text-gray-800 dark:bg-gray-700  dark:text-white dark:placeholder-text-gray-400"
                 />
               </div>
 

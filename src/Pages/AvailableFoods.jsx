@@ -56,32 +56,19 @@ const AvailableFoods = () => {
     setFilteredFoods(searchedFoods);
   }, [searchText, locationFilter, expireFilter, foods]);
 
-  // Theme Toggle Function
-  //   const toggleTheme = () => {
-  //     const newTheme = theme === "dark" ? "light" : "dark";
-  //     setTheme(newTheme);
-  //     localStorage.setItem("theme", newTheme);
-  //   };
+ 
 
   return (
     <div
-    //       className={`min-h-screen p-6 transition-all ${
-    //         theme === "dark" ? "bg-gray-950 text-gray-200" : "bg-gray-100 text-gray-900"
-    //       }`}
+    
     >
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex justify-between items-center pt-10 mb-6">
         <h1 className="text-4xl font-bold text-center flex-1 mt-20 text-green-600 ">
           Available Foods
         </h1>
 
-        {/* Dark/Light Mode Toggle */}
-        {/* <button
-          onClick={toggleTheme}
-          className="text-xl p-2 rounded-lg transition bg-gray-800 text-white hover:bg-gray-700 dark:bg-gray-200 dark:text-black"
-        >
-          {theme === "dark" ? <BsSun /> : <BsMoon />}
-        </button> */}
+        
       </div>
 
       {/* Search & Filters */}
