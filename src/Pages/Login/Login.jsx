@@ -62,14 +62,17 @@ const Login = () => {
               <label className="label">
                 <span className="label-text">Email</span>
               </label>
-              <input type="email" name="email" placeholder="Enter email" className="input input-bordered w-full" required />
+              <input type="email" name="email" placeholder="Enter email" className="input input-bordered w-full bg-white
+                text-gray-900 dark:text-white dark:bg-gray-700" required />
             </div>
 
             <div className="form-control relative">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
-              <input type={showPassword ? "text" : "password"} name="password" placeholder="Enter password" className="input input-bordered w-full" required />
+              <input type={showPassword ? "text" : "password"} name="password" placeholder="Enter password" 
+              className="input input-bordered w-full bg-white
+                text-gray-900 dark:text-white dark:bg-gray-700" required />
               <button type="button" onClick={handleShowPassword} className="absolute right-4 top-12 text-gray-600">
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
