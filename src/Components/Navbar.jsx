@@ -76,7 +76,7 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu */}
-            <div className={`lg:hidden fixed top-0 left-0 w-[60%] h-[80%] bg-green-700 text-white z-40 transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out p-6`}>
+            <div className={`lg:hidden fixed top-0 left-0 w-[60%] h-[100%] bg-green-700 text-white z-40 transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out p-6`}>
                 {/* <button onClick={handleMenuToggle} className="absolute top-4 right-4 text-2xl">
                     <FaTimes />
                 </button> */}

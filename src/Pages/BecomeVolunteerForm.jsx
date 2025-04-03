@@ -47,7 +47,7 @@ const BecomeVolunteerForm = () => {
   };
 
   return (
-    <section className="bg-gradient-to-r from-green-500 to-blue-500 py-12 px-6 sm:px-12 lg:px-24">
+    <section className="bg-gradient-to-r from-green-500 to-blue-500 py-12 px-6 sm:px-12 lg:px-24 pb-20">
       <div className="max-w-3xl mx-auto bg-white p-8 shadow-lg rounded-lg transform transition duration-500 hover:scale-105 mt-20">
         <h2 className="text-xl lg:text-2xl font-bold text-center text-gray-900 mb-6">
           🙌 Become a Volunteer
