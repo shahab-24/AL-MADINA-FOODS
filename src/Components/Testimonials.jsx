@@ -8,7 +8,7 @@ const Testimonials = () => {
       animate={{ opacity: 1, scale: 1 }} 
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-3xl font-bo dark:text-white">Testimonials</h2>
+      <h2 className="text-3xl font-bold text-green-600">Testimonials</h2>
       <div className="mt-6">
         <blockquote className="italic text-gray-700 dark:text-gray-300">"This platform has changed lives! A brilliant initiative!"</blockquote>
         <p className="mt-2 text-gray-500 dark:text-gray-400">— John Doe, Volunteer</p>
