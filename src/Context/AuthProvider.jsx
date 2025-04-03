@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
         const user = result.user;
         setUser(user);
         setLoading(false);
-        console.log(user);
+        // console.log(user);
         toast.success("Login successful");
         //  const from = location.state?.from?.pathname || "/";
         // navigate(from, {replace: true})
@@ -94,15 +94,7 @@ const AuthProvider = ({ children }) => {
 
   const logOutUser = () => {
     return signOut(auth);
-    //     setLoading(true);
-    //     signOut(auth)
-    //       .then(() => {
-    //         setUser(null);
-    //         // navigate('/')
-    //       })
-    //       .catch((error) => {
-    //         setErr(error.message);
-    //       });
+    
   };
 
   const authInfo = {

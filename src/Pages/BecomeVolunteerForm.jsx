@@ -62,7 +62,7 @@ const BecomeVolunteerForm = () => {
               <Field
                 name="name"
                 placeholder="Your Name"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 bg-white text-gray-900 dark:bg-gray-800 dark:text-white focus:ring-green-500"
               />
               <ErrorMessage
                 name="name"
@@ -74,7 +74,7 @@ const BecomeVolunteerForm = () => {
                 name="email"
                 type="email"
                 placeholder="Your Email"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 bg-white dark:bg-gray-900 dark:text-white text-gray-900 focus:ring-green-500"
               />
               <ErrorMessage
                 name="email"
@@ -85,7 +85,8 @@ const BecomeVolunteerForm = () => {
               <Field
                 name="phone"
                 placeholder="Your Phone"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 bg-white
+                text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-green-500"
               />
               <ErrorMessage
                 name="phone"
@@ -98,7 +99,8 @@ const BecomeVolunteerForm = () => {
                 name="message"
                 rows="4"
                 placeholder="Why do you want to volunteer?"
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 bg-white
+                text-gray-900 dark:text-white dark:bg-gray-700 focus:ring-green-500"
               />
               <ErrorMessage
                 name="message"
