@@ -25,7 +25,7 @@ const BecomeVolunteerForm = () => {
   const handleSubmit = async (values, { resetForm }) => {
     try {
       await axiosSecure.post(
-        "https://al-madina-foods-server.vercel.app/volunteer-request",
+        `${import.meta.env.VITE_API_URL}/volunteer-request`,
         values,
         { withCredentials: true }
       );

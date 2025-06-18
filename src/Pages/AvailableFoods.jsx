@@ -22,7 +22,7 @@ const AvailableFoods = () => {
     AOS.init({ duration: 1200 });
 
     axios
-      .get("https://al-madina-foods-server.vercel.app/available-foods")
+      .get(`${import.meta.env.VITE_API_URL}/available-foods`)
       .then((result) => {
         // Sort by expiration date (soonest first)
         const sortedFoods = result.data.sort(
@@ -56,19 +56,13 @@ const AvailableFoods = () => {
     setFilteredFoods(searchedFoods);
   }, [searchText, locationFilter, expireFilter, foods]);
 
- 
-
   return (
-    <div
-    
-    >
+    <div>
       {/* Header */}
       <div className="flex justify-between items-center pt-10 mb-6">
         <h1 className="text-4xl font-bold text-center flex-1 mt-20 text-green-600 ">
           Available Foods
         </h1>
-
-        
       </div>
 
       {/* Search & Filters */}

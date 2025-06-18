@@ -15,7 +15,7 @@ const GamificationBadge = () => {
         // Fetch logged-in user's stats
         if (user?.email) {
           const response = await axios.get(
-            "https://al-madina-foods-server.vercel.app/donor-stats",
+            `${import.meta.env.VITE_API_URL}/donor-stats`,
             { params: { email: user?.email } }
           );
           setDonorStats(response.data);
@@ -23,7 +23,7 @@ const GamificationBadge = () => {
 
         // Fetch all donors' stats
         const allDonorsResponse = await axios.get(
-          "https://al-madina-foods-server.vercel.app/donor-stats/all"
+          `${import.meta.env.VITE_API_URL}/donor-stats/all`
         );
         setAllDonors(allDonorsResponse.data);
         setLoading(false);

@@ -14,7 +14,7 @@ const Banner = () => {
       .catch(() => []);
 
     const fetchMongoData = axios
-      .get("https://al-madina-foods-server.vercel.app/featured-foods")
+      .get(`${import.meta.env.VITE_API_URL}/featured-foods`)
       .then((res) => res.data)
       .catch(() => []);
 
@@ -32,7 +32,7 @@ const Banner = () => {
       });
   }, []);
 
-  // ➤ Detect if Banner is in viewport
+  
   useEffect(() => {
     const handleScroll = () => {
       const banner = document.getElementById("banner");
@@ -49,7 +49,7 @@ const Banner = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ➤ Only slide when Banner is visible
+  
   useEffect(() => {
     if (foods.length > 0 && isVisible) {
       const interval = setInterval(() => {
@@ -77,7 +77,7 @@ const Banner = () => {
               initial={{ opacity: 0, x: isVisible ? "100%" : 0 }}
               animate={{ opacity: 1, x: isVisible ? "0%" : 0 }}
               exit={{ opacity: 0, x: isVisible ? "-100%" : 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 1.2 }}
             >
               {/* Background Image (Fixed Positioning Issue) */}
               <motion.div
@@ -114,7 +114,7 @@ const Banner = () => {
           >
             <motion.span
               whileHover={{ scale: 1.2 }}
-              className="text-2xl font-bold"
+              className="text-xl font-semibold"
             >
               &lt;
             </motion.span>

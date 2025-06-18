@@ -36,7 +36,7 @@ const Register = () => {
       const userInfo = { name, email, photo };
 
       const response = await axios.post(
-        "https://al-madina-foods-server.vercel.app/user",
+        `${import.meta.env.VITE_API_URL}/user`,
         userInfo
       );
       if (response.data.insertedId) {

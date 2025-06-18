@@ -19,7 +19,7 @@ const FoodDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`https://al-madina-foods-server.vercel.app/food-details/${id}`, {
+      .get(`${import.meta.env.VITE_API_URL}/food-details/${id}`, {
         withCredentials: true,
       })
       .then((result) => {
@@ -40,7 +40,7 @@ const FoodDetails = () => {
 
     axios
       .get(
-        `https://al-madina-foods-server.vercel.app/myRequest?userEmail=${loggedInUserEmail}`,
+        `${import.meta.env.VITE_API_URL}/myRequest?userEmail=${loggedInUserEmail}`,
         {
           withCredentials: true,
         }
@@ -59,13 +59,9 @@ const FoodDetails = () => {
           });
         } else {
           axios
-            .post(
-              "https://al-madina-foods-server.vercel.app/request-food",
-              requestData,
-              {
-                withCredentials: true,
-              }
-            )
+            .post(`${import.meta.env.VITE_API_URL}/request-food`, requestData, {
+              withCredentials: true,
+            })
             .then((result) => {
               setFood(result.data);
               Swal.fire({
@@ -134,50 +130,49 @@ const FoodDetails = () => {
 
         {/* Request Food Modal */}
         {showModal && (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
-        Request Food
-      </h2>
-      <p className="text-gray-600 dark:text-gray-300 mb-2">
-        <strong>Food Name:</strong> {food.foodName}
-      </p>
-      <p className="text-gray-600 dark:text-gray-300 mb-2">
-        <strong>Food ID:</strong> {id}
-      </p>
-      <p className="text-gray-600 dark:text-gray-300 mb-2">
-        <strong>Donator Email:</strong> {food.foodUser?.donatorEmail}
-      </p>
-      <p className="text-gray-600 dark:text-gray-300 mb-2">
-        <strong>User Email:</strong> {loggedInUserEmail}
-      </p>
-      <p className="text-gray-600 dark:text-gray-300 mb-4">
-        <strong>Request Date:</strong> {new Date().toLocaleString()}
-      </p>
-      <textarea
-        placeholder="Add additional notes (optional)"
-        className="w-full border border-gray-300 dark:border-gray-600 p-2 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-600 dark:bg-gray-700 dark:text-gray-100"
-        value={additionalNotes}
-        onChange={(e) => setAdditionalNotes(e.target.value)}
-      ></textarea>
-      <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4">
-        <button
-          onClick={() => setShowModal(false)}
-          className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={() => handleRequestFood(food._id)}
-          className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-800 transition"
-        >
-          Request
-        </button>
-      </div>
-    </div>
-  </div>
-)}
-
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-4">
+                Request Food
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-2">
+                <strong>Food Name:</strong> {food.foodName}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-2">
+                <strong>Food ID:</strong> {id}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-2">
+                <strong>Donator Email:</strong> {food.foodUser?.donatorEmail}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-2">
+                <strong>User Email:</strong> {loggedInUserEmail}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                <strong>Request Date:</strong> {new Date().toLocaleString()}
+              </p>
+              <textarea
+                placeholder="Add additional notes (optional)"
+                className="w-full border border-gray-300 dark:border-gray-600 p-2 mb-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-600 dark:bg-gray-700 dark:text-gray-100"
+                value={additionalNotes}
+                onChange={(e) => setAdditionalNotes(e.target.value)}
+              ></textarea>
+              <div className="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-4">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={() => handleRequestFood(food._id)}
+                  className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-800 transition"
+                >
+                  Request
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -26,7 +26,7 @@ const MyFood = () => {
     setLoading(true);
     axios
       .get(
-        `https://al-madina-foods-server.vercel.app/myFood?userEmail=${loggedInUserEmail}`,
+        `${import.meta.env.VITE_API_URL}/myFood?userEmail=${loggedInUserEmail}`,
         {
           withCredentials: true,
         }
@@ -53,12 +53,9 @@ const MyFood = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(
-            `https://al-madina-foods-server.vercel.app/myFood/${foodId}`,
-            {
-              withCredentials: true,
-            }
-          )
+          .delete(`${import.meta.env.VITE_API_URL}/myFood/${foodId}`, {
+            withCredentials: true,
+          })
           .then(() => {
             Swal.fire(
               "Deleted!",
@@ -83,7 +80,7 @@ const MyFood = () => {
   const handleUpdate = (updatedFood) => {
     const { _id, ...rest } = updatedFood;
     axios
-      .patch(`https://al-madina-foods-server.vercel.app/myFood/${_id}`, rest, {
+      .patch(`${import.meta.env.VITE_API_URL}/myFood/${_id}`, rest, {
         withCredentials: true,
       })
       .then(() => {
@@ -114,13 +111,13 @@ const MyFood = () => {
   };
 
   return (
-    <div className="min-h-screen pt-10 bg-gradient-to-br from-green-100 via-green-50 to-green-200 p-6">
-      <h2
-        className="text-3xl text-green-700 md:text-4xl font-bold text-center dark:text-gray-200 mb-6 mt-20"
-        data-aos="fade-down"
+    <div className="min-h-screen pt-10 bg-gradient-to-br from-green-200 via-green-10 to-green-300 p-6">
+      <h3
+        className="text-3xl text-green-600 md:text-4xl font-bold text-center  mb-6 mt-16"
+        data-aos="zoom-in"
       >
         My Added Foods
-      </h2>
+      </h3>
 
       {loading ? (
         <div className="space-y-4">

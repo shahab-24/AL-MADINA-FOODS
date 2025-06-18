@@ -9,7 +9,7 @@ const FeaturedFoods = () => {
 
   useEffect(() => {
     axios
-      .get("https://al-madina-foods-server.vercel.app/featured-foods")
+      .get(`${import.meta.env.VITE_API_URL}/featured-foods`)
       .then((result) => {
         setFeaturedFoods(result.data);
       })

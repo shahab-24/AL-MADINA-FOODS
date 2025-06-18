@@ -20,7 +20,7 @@ const AddFood = () => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
     axios
-      .get("https://al-madina-foods-server.vercel.app/foods", {
+      .get(`${import.meta.env.VITE_API_URL}/foods`, {
         withCredentials: true,
       })
       .then((res) => setFoods(res.data))
@@ -56,7 +56,7 @@ const AddFood = () => {
     }
 
     axios
-      .post("https://al-madina-foods-server.vercel.app/add-foods", newFood, {
+      .post(`${import.meta.env.VITE_API_URL}/add-foods`, newFood, {
         withCredentials: true,
       })
       .then((res) => {
@@ -72,20 +72,20 @@ const AddFood = () => {
 
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage: "url('https://via.placeholder.com/1500x1000')",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
-        backgroundBlendMode: "overlay",
-      }}
+      className="min-h-screen flex items-center justify-center bg-cover bg-base-200 bg-center shadow-2xl"
+//       style={{
+//         backgroundImage: "url('https://via.placeholder.com/1500x1000')",
+//         backgroundColor: "rgba(0, 0, 0, 0.8)",
+//         backgroundBlendMode: "overlay",
+//       }}
     >
-      <div className="container mt-20 mx-auto p-2 sm:p-4 md:p-6 bg-white bg-opacity-90 rounded-lg shadow-lg">
-        <h1
-          className="text-3xl text-green-700 md:text-4xl font-bold text-center dark:text-gray-200 mb-6 mt-10"
-          data-aos="fade-up"
-        >
-          Add Food
-        </h1>
+      <div className="container mt-20 md:mt-6 mx-auto p-2 sm:p-4 md:p-6 bg-base-100 bg-opacity-90 rounded-lg shadow-lg">
+      <h3
+        className="text-3xl text-green-700 md:text-4xl font-bold text-center  mb-6 mt-16 md:mt-8"
+        data-aos="zoom-in"
+      >
+        Add Food
+      </h3>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="grid grid-cols-1 sm:grid-cols-2 gap-4"

@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
         console.log("current user from authState", currentUser);
         const user = { email: currentUser.email };
         axios
-          .post("https://al-madina-foods-server.vercel.app/jwt", user, {
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, user, {
             withCredentials: true,
           })
           .then((result) => console.log("login token", result.data))
@@ -75,7 +75,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "https://al-madina-foods-server.vercel.app/logout",
+            `${import.meta.env.VITE_API_URL}/logout`,
             {},
             {
               withCredentials: true,
@@ -94,7 +94,6 @@ const AuthProvider = ({ children }) => {
 
   const logOutUser = () => {
     return signOut(auth);
-    
   };
 
   const authInfo = {

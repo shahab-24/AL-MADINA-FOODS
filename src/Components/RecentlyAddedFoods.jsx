@@ -10,7 +10,7 @@ const RecentlyAddedFoods = () => {
     const fetchRecentFoods = async () => {
       try {
         const response = await axios.get(
-          "https://al-madina-foods-server.vercel.app/recent-foods"
+          `${import.meta.env.VITE_API_URL}/recent-foods`
         );
         setRecentFoods(response.data);
       } catch (error) {
